@@ -93,7 +93,7 @@ reshownumber=1;
 mosnumber=0;
 osn=[];actos=1;
 
-elementslist=[["SW", "Free", [[-0.3267, 1, -0.031]]], ["NE", "Free", [[1, 0.3121, 0.0155]]], ["T1", "Free", [[15, 40, 1]]], ["T2", "Free", [[15, 35, 1]]], ["T3", "Free", [[40, 40, 1]]], ["T4", "Free", [[40, 35, 1]]], ["AX", "Free", [[45, 15, 1]]]];
+elementslist=[["SW", "Free", [[-0.3267, 1, -0.031]]], ["NE", "Free", [[1, 0.3121, 0.0155]]], ["T1", "Free", [[15, 40, 1]]], ["T2", "Free", [[15, 35, 1]]], ["T3", "Free", [[40, 40, 1]]], ["T4", "Free", [[40, 35, 1]]], ["AX", "Free", [[45, 20, 1]]]];
 
 CSE():=(
  realtime=mod(realtime+1,2);
@@ -565,78 +565,7 @@ Addpar(str):=(
   );
   out;
 );
-Listplot(list):=Listplot(list,[]);
-Listplot(Arg1,Arg2):=(
-  regional(name,list,options,str);
-  if(isstring(Arg1),
-    name=Arg1;
-    list=Arg2;
-    Listplot(name,list,[]);
-  ,
-    list=Arg1;
-    options=Arg2;
-    name="";
-    forall(list, // 16.10.07from
-       name=name+#.name;
-    );// 16.10.07until
-    Listplot(name,list,options);
-  );
-);
-Listplot(nm,list,options):=(
-  regional(name,cutend,tmp,tmp1,tmp2,ptlist,Ltype,opcindy,Noflg,eqL,Msg,color,color4);
-  if(substring(nm,0,1)=="-",  // 16.01.27 from
-    name=substring(nm,1,length(nm));
-  ,
-    name="sg"+nm;
-  ); // upto
-  tmp=Divoptions(options);
-  Ltype=tmp_1;
-  Noflg=tmp_2;
-  eqL=tmp_5;
-  color=tmp_(length(tmp)-2); color4=Colorrgb2cmyk(color); //200618
-  opcindy=tmp_(length(tmp));
-  Msg="Y";  //190206
- Msg="N"; //
-  cutend=[0,0];//180719
-  forall(eqL,
-    tmp=Strsplit(#,"=");
-    tmp1=Toupper(substring(tmp_1,0,1));
-    if(tmp1=="M",
-      Msg=Toupper(substring(tmp_2,0,1));
-    );
-    if(tmp1=="C",//180719from
-      tmp2=replace(tmp_2,"[","");
-      tmp2=replace(tmp2,"]","");
-      cutend=tokenize(tmp2,",");
-      if(length(cutend)==1,cutend=[cutend_1,cutend_1]);     
-    );//180719to
-  );
-  if(Noflg<3,
-    if(Msg=="Y", //190206
-      println("generate Listplot "+name);
-    );
-    if(isstring(list_1),tmp=apply(list,parse(#)),tmp=list); // 15.03.24
-    ptlist=apply(tmp,Pcrd(#));
-    if(|cutend|>0,//180719from
-      tmp=ptlist_(length(ptlist))-ptlist_1;
-      tmp=tmp/|tmp|;
-      ptlist_1=ptlist_1+tmp*cutend_1;
-      ptlist_(length(ptlist))=ptlist_(length(ptlist))-tmp*cutend_2;
-    );//180719to
-    tmp=name+"="+Textformat(ptlist,5)+";"; //190415
-    parse(tmp);
-  );
-  if(Noflg<3, //190818
-    if(isstring(Ltype),
-      Ltype=Getlinestyle(text(Noflg)+Ltype,name);
-    ,
-      if(Noflg==1,Ltype=0);
-    );
-    GCLIST=append(GCLIST,[name,Ltype,opcindy]);
-  );
-  tmp1=apply(list,Lcrd(#));
-  tmp1;
-);
+
 Divoptions(options):=(
   regional(Ltype,Noflg,Inflg,Outflg,eqL,realL,strL,
       color,opstr,opcindy,flg,tmp,tmp1,tmp2);
@@ -4034,7 +3963,7 @@ if(startflg==1,
   if(T3.y-T4.y<dtpy,T4.y=T3.y-dtpy);
 );
 
-//--- v --- usui
+//--- ↓ --- usui
 
 if(reshownumber==1,
 // apply(allelements(),removeelement(#));
@@ -4114,7 +4043,7 @@ if(realtime==1,
  Execute();
 );
 
-//--- ^ --- usui
+//--- ↑ --- usui
 
 Addax(0);
 nameL=Keyname();
@@ -4151,7 +4080,7 @@ if(funflg==1,
 tpL=[T3.xy,T1.xy];
 dyL=[T3.y-T4.y,T1.y-T2.y];
 
-//--- v ---usui
+//--- ↓ ---usui
 
 forall(1..mpnumber-1,
  tmp=parse("Q"+text(#));
@@ -4159,7 +4088,7 @@ forall(1..mpnumber-1,
  dyL=append(dyL,3.2);
 );
 
-//--- ^ --- usui
+//--- ↑ --- usui
 
 nch=length(textlist);
 texstr="";
@@ -4195,6 +4124,9 @@ if(texflg==1,
 Windispg();
 ;
 </script>
+
+<!--- ↓ usui --> 
+
     <script type="text/javascript">
 var cdy = CindyJS({
   scripts: "cs*",
@@ -4238,11 +4170,15 @@ var cdy = CindyJS({
   cinderella: {build: 2036, version: [3, 0, 2036]}
 });
     </script>
+
+<!--- ↑ usui ---> 
+
 </head>
 <body>
 
-<!--- ↓usui 
-<table border="1">--->
+<!--- usui 
+<table border="1">
+--->
 <table>
 <tr><td>
     <div id="CSCanvas"></div>
@@ -4419,6 +4355,11 @@ Input  (at □)
 </footer>
 
 
+<!-- ここならよい 　改行あるとダメ -->
+
+<script type="text/javascript" src="ato11.js"></script>
+
+<script type="text/javascript" src="ato10.js"></script>
 
 <script language="javascript" type="text/javascript">
 

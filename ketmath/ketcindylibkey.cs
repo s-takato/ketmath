@@ -14,8 +14,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-println("ketcindylibkey[20211112 loaded"); // no ketjs
+println("ketcindylibkey[20220422 loaded"); // no ketjs
 
+// 220424 Setkeypos():=
 // 211111 Setkeystyle changed ( keyposition, only for exiisting text )
 // 211111 Alltextkey changed ( fname option )
 // 211109 Dispposition changed (length of seg, nonascii)
@@ -719,10 +720,8 @@ Setkeypos(fname):=(
   keyL=apply(keyL,Strsplit(#,","));
   forall(keyL,key,
     tmp1=key_3;
-    if(tmp1==Dqq("　"),
-      tmp=key_2+".xy=["+key_7+","+key_8+"];";
-      parse(tmp);
-    );
+    tmp=key_2+".xy=["+key_7+","+key_8+"];";
+    parse(tmp);
   );
 ); //no ketjs off
 ////%Setkeypos end////

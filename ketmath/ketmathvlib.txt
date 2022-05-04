@@ -1,3 +1,4 @@
+//   220412
 //   211112
 //   211020
 //   210923
@@ -13,6 +14,21 @@ vecflg=0;
 
 nch=2;
 ch=2;
+StrL=apply(1..nch,"");
+StrpL=apply(1..nch,"");
+startflg=1;
+initflg=1;
+DrwL=[];
+dpos=[10,14];
+
+Str="";
+Strp="";
+Strnq="";
+Strnow="";
+Strt="";
+npos=0;
+
+
 //nt=4;
 px=15;
 dtpy=3.2;
@@ -40,12 +56,17 @@ dxL_4=40; dxL_5=37;
 dxL2=apply(1..9,35.5);
 dxL3=[40,40];
 
+Adddrw(str):=(
+  DrwL=append(DrwL,[dpos,str,18]);
+  dpos=dpos-[0,2];
+);
+
  // no ketjs on 
-Seteditable(1,["","Size=24","Width=500"]);
-Seteditable(2,["","Size=24","Width=500"]);
-Seteditable(3,["","Size=24","Width=500"]);
-Seteditable(10,["","Size=18","Width=50"]);
-Seteditable(32,["","Size=18","Width=80"]);
+Seteditable(1,["","Size=24","Width=535"]);
+Seteditable(2,["","Size=24","Width=535"]);
+Seteditable(3,["","Size=24","Width=535"]);
+//Seteditable(10,["","Size=18","Width=50"])
+//Seteditable(32,["","Size=18","Width=80"]);
 Text1.xy=[px+1,posyL_1-1];
 Text2.xy=[px+1,posyL_2-1];
 Text3.xy=[px+1,posyL_3-1];
@@ -152,9 +173,12 @@ Keyname():=(
 
 
 ///////
-Manifun=["Allclear()","Clearnow()","Delete()","Push()","Pull()"];
+Manifun=["Allclear()","Clearnow()","Delete()","Push()","Pull()",
+  "Left()","Right()","LLeft()","RRight()"];
 
 Allclear():=(
+  Str="";
+  Strnq="";
   StrL_ch="";
   StrpL_ch="";
   npos=0;
@@ -170,15 +194,21 @@ Clearnow():=(
 );
 
 Delete():=(
-  regional(tmp1,tmp2,strnow);
-  if(npos>0,
-    strnow=StrL_ch;
-    tmp1=substring(strnow,0,npos-1);
-    tmp2=substring(strnow,npos,length(strnow));
-    StrL_ch=tmp1+tmp2;
-    strnow=StrL_ch;
-    Subsedit(ch,strnow);
+  regional(tmp,tmp1,tmp2);
+  //global npos,Str,Strnq,Str_ch,funflg
+  if(length(Str)>0,
+    if(npos==length(Str),
+      Str=substring(Str,0,npos-1);
+    ,
+      tmp1=substring(Str,0,npos-2);
+      tmp2=substring(Str,npos-1,length(Str));
+      Str=tmp1+tmp2;
+    );
+    Strnq=replace(Str,"?","");
+    Strnow=Str;
+    StrL_ch=Strnq;
     npos=npos-1;
+    Subsedit(ch,Str);
     funflg=0;
   ,
     Pull();
@@ -193,14 +223,16 @@ Push():=(
   tmp=indexof(tmp1,"//");
   if(tmp==0,
     StrpL_ch=StrpL_ch+tmp1+"//";
-    StrL_ch="";
+    Str="";
     npos=0;
   ,
     StrpL_ch=StrpL_ch+substring(tmp1,0,tmp+1);
-    StrL_ch=substring(tmp1,tmp+1,length(tmp1));
+    Str=substring(tmp1,tmp+1,length(tmp1));
     npos=max([0,npos-(tmp+1)]);
   );
-  Subsedit(ch,StrL_ch);
+  StrL_ch=Str;
+  Strnq=Str;
+  Subsedit(ch,Str);
 );
 
 Pull():=(
@@ -211,7 +243,71 @@ Pull():=(
   tmp2=substring(tmp1,0,tmp);
   StrpL_ch=tmp2;
   tmp1=substring(tmp1,tmp,length(tmp1));
-  StrL_ch=tmp1+StrL_ch;
+  Str=tmp1+StrL_ch;
+  Strnq=Str;
+  StrL_ch=Str;
   npos=length(tmp1)+npos;
-  Subsedit(ch,StrL_ch);
+  Subsedit(ch,Str);
+);
+
+Left():=(
+  regional(tmp,tmp1,tmp2,tmp3);
+  //global Str,npos
+  if(length(Str)>0,
+    tmp=indexof(Str,"?");
+    if(tmp>1,
+      tmp1=substring(Str,0,tmp-2)+"?";
+      tmp2=substring(Str,tmp-2,tmp-1);
+      tmp3=substring(Str,tmp,length(Str));
+      Str=tmp1+tmp2+tmp3;
+      npos=length(tmp1+"?");
+    );
+    if(tmp==0,
+      tmp1=substring(Str,0,length(Str)-1)+"?";
+      tmp3=substring(Str,length(Str)-1,length(Str));
+      Str=tmp1+tmp3;  
+      npos=length(tmp1);
+    );
+  );
+);
+
+Right():=(
+  regional(tmp,tmp1,tmp2,tmp3);
+  //global Str,npos
+  if(length(Str)>0,
+    tmp=indexof(Str,"?");
+    if(tmp>0,
+      if(tmp<length(Str)-1,
+        tmp1=substring(Str,0,tmp-1);
+        tmp2=substring(Str,tmp,tmp+1)+"?";
+        tmp3=substring(Str,tmp+1,length(Str));
+        Str=tmp1+tmp2+tmp3;
+        npos=length(tmp1+"?");
+      );
+      if(tmp==length(Str)-1,
+        tmp1=substring(Str,0,tmp-1);
+        tmp3=substring(Str,tmp,length(Str));
+        Str=tmp1+tmp3;
+        npos=length(Str);
+      );
+    );
+  );
+);
+
+LLeft():=(
+  regional(tmp,tmp1,tmp2,tmp3);
+  //global Str,npos
+  if(length(Str)>0,
+    npos=1;
+    Str="?"+Str;
+  );
+);
+
+RRight():=(
+  regional(tmp,tmp1,tmp2,tmp3);
+  //global Str,npos
+  if(length(Str)>0,
+    Str=replace(Str,"?","");
+    npos=length(Str);
+  );
 );

@@ -62,8 +62,6 @@ Text30
 funflg=1;name="+";
 Text31
 funflg=1;if(Shift<=1,name="lim(");if(Shift==2,name="mat(");
-Text32
-
 Text33
 if(keytype!=3,keytype=3,keytype=1);
 Text34
@@ -193,23 +191,23 @@ funflg=1;name="/";
 Text97
 funflg=1;if(Shift==1,name="diff(",name="case(");
 Text100
-npos=0;
+funflg=1;name="LLeft()";
 Text101
-funflg=1;Delete();
+funflg=1;name="Delete()";
 Text102
-funflg=1;name="Clearnow()";
-Text103
 funflg=1;name="Allclear()";
+Text103
+funflg=1;name="Clear()";
 Text104
 funflg=1;name="Push()";
 Text105
 funflg=1;name="Pull()";
 Text106
-npos=max([0,npos-1]);
+funflg=1;name="Left()";
 Text107
-npos=min([npos+1,length(StrL_ch)]);
+funflg=1;name="Right()";
 Text108
-npos=length(StrL_ch);
+funflg=1;name="RRight()";
 Text109
 if(Shift!=1,Shift=1,Shift=0);
 Text110
@@ -219,6 +217,6 @@ funflg=1;name="ln(";
 Text112
 funflg=1;if(Shift==1,name="br(",name="sum(");
 Text113
-ffunflg=1; name="pi";
+funflg=1; name="pi";
 Text114
 stok=stok+1

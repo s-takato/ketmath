@@ -2839,6 +2839,12 @@ Arrowdataseg(nm,ptlistorg,optionsorg):=(
 Ketcindyjsfigure=0;
 Ketcindyjsscale=1.1;
 aalinestart=1;
+quline="";
+quline="Q02::三角比を求めよ．	[1]:: cos(30(deg))	[2]:: sin(45(deg))	[3]:: tan(60(deg))";
+shline="";
+shline="Q02---	[1]	[2]	[3]";
+sqline="";
+sqline="01KA	2	2	2	2CR02NI	2	2	2	2CR03VL	2	2	2	2CR04TO	2	2	2	2CR05RO	2	2	2	2CR06AK	2	2	2	2CR07YK	2	2	2	2CR08MT	2	2	2	2CR09HN	2	2	2	2CR10HH	2	2	2	2CR11KH	2	2	2	2CR12YM	2	2	2	2CR13TY	2	2	2	2CR14KK	2	2	2	2CR15YK	2	2	2	2CR16YT	2	2	2	2";
 zzlineend=1;
 
 
@@ -4140,9 +4146,30 @@ if(stoknow==2,
     dy=dyL_nc;
     ns=length(sL);
     forall(1..ns,nn,
-      strt=Gettexform(sL_nn);
-      tmp=tp+[1.2,-0.2];
-      Drwletter(tmp,strt,22);
+      flg=0; //220609from
+      tmp1=sL_nn;
+      if(indexof(tmp1,"(")>0,
+        tmp2=Bracket(tmp1);
+        tmp=tmp2_(-1);
+        if(tmp_2!=-1,
+          flg=1;
+          tmp2=select(tmp2,abs(#_2)==1);
+          tmp2=apply(tmp2,#_1);
+          tmp=tp+[0,-0.2];
+          forall(1..(length(tmp1)),mm,
+            tmp3=tmp1_mm;
+            clr=[0,0,0];
+            if(contains(tmp2,mm),clr=[1,0,0]);
+            tmp_1=tmp_1+1.25;
+            Drwletter(tmp,tmp3,22,clr);
+          );
+        );
+      );
+      if(flg==0,
+        strt=Gettexform(sL_nn);
+        tmp=tp+[1.2,-0.2];
+        Drwletter(tmp,strt,22);
+      );
       tp=tp-[0,dy];
       texstr=texstr+strt;
     );
@@ -4184,8 +4211,8 @@ var cdy = CindyJS({
     {name: "Text3", type: "EditableText", pos: [1.8285714285714285, -4.0, 0.11428571428571428], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 1.0, minwidth: 535, text: "Student=", textsize: 24.0},
     {name: "T1", type: "Free", pos: [-3.5632183908045985, -4.0, -0.2298850574712644], color: [0.0, 0.0, 0.0], labeled: false, size: 6.0, border: false},
     {name: "T2", type: "Free", pos: [4.0, 3.6645161290322577, 0.25806451612903225], color: [1.0, 0.784, 0.0], labeled: false, size: 6.0, border: false},
-    {name: "T3", type: "Free", pos: [4.0, 2.838709677419355, 0.25806451612903225], color: [0.0, 0.0, 0.0], labeled: false, size: 6.0, border: false},
-    {name: "T4", type: "Free", pos: [4.0, 2.0129032258064514, 0.25806451612903225], color: [1.0, 0.784, 0.0], labeled: false, size: 6.0, border: false},
+    {name: "T3", type: "Free", pos: [4.0, 2.8387096774193545, 0.25806451612903225], color: [0.0, 0.0, 0.0], labeled: false, size: 6.0, border: false},
+    {name: "T4", type: "Free", pos: [4.0, 2.012903225806451, 0.25806451612903225], color: [1.0, 0.784, 0.0], labeled: false, size: 6.0, border: false},
     {name: "SW", type: "Free", pos: [1.4694412402425423, -4.0, 0.12563238528778808], color: [1.0,1.0,1.0], labeled: false, size: 2.0, border:false },
     {name: "Text10", type: "EditableText", pos: [4.0, 0.056, 0.08], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 1.0, minwidth: 65, textsize: 18.0},
     {name: "Text47", type: "Button", pos: [4.0, -1.1428571428571428, 0.11428571428571428], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 0.0], fillalpha: 0.27272728085517883, text_fontfamily: "monospace", script: "funflg=1;name=\"fr(\";", text: "___", textsize: 14.0},
@@ -4297,8 +4324,8 @@ var cdy = CindyJS({
   ports: [{
     id: "CSCanvas",
     width: 846,
-    height: 679,
-    transform: [{visibleRect: [2.327076488126562, 27.35607693819892, 81.86137957120773, -36.45753164731614]}],
+    height: 702,
+    transform: [{visibleRect: [2.327076488126562, 27.35607693819892, 81.86137957120773, -38.629469702900934]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

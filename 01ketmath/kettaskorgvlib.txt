@@ -1,3 +1,4 @@
+//   220728 Quesno added
 //   220605 plistplot changed
 //   220529 pdrwxy,plistplot,pplotdata
 //   220510 ketaskinit  ( move setting from ketlib draw)
@@ -149,8 +150,8 @@ Keyname():=(
   nL3=[
     ["lim","pi"],
     ["int","$\infty$"],
-    ["'","cs"],
-    ["$\sum$","tx"]
+    ["'","cas"],
+    ["sum","txt"]
   ];
 
   if(Shift==1,
@@ -468,4 +469,18 @@ pplotdata(name1,func,variable,options):=( //220529
   Plotdata("v"+name1,func,variable,["nodisp"]);
   tmp=Adjust("grv"+name1);
   Listplot("-gr"+name1,tmp,options);
+);
+
+Quesno():=( //220728
+  regional(quL,tmp,out);
+  // quL,nqu
+  out="";
+  tmp=select(1..nqu,substring(quL_#_1,0,1)=="Q");
+  if(length(tmp)>0,
+    tmp=tmp_(-1);
+    out=quL_tmp_1;
+    tmp=indexof(out," ");
+    if(tmp>0,out=substring(out,0,tmp-1));
+  );
+  out;
 );

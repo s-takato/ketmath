@@ -1,3 +1,4 @@
+//   220728 Quesno, pos of Text1
 //   211112
 //   211020
 //   210923
@@ -53,7 +54,7 @@ Seteditable(2,["","Size=24","Width=500"]);
 Seteditable(3,["","Size=24","Width=500"]);
 Seteditable(10,["Pg=","Size=18","Width=65"]);
 Seteditable(32,["St=","Size=18","Width=65"]);
-Text1.xy=[px+1,posyL_1-1];
+Text1.xy=[px+8,posyL_1-1];
 Text2.xy=[px+1,posyL_2-1];
 Text3.xy=[px+1,posyL_3-1];
 inspect(T1,"ptsize",6);
@@ -80,8 +81,8 @@ Keyname():=(
   nL3=[
     ["lim","pi"],
     ["int","$\infty$"],
-    ["'","cs"],
-    ["$\sum$","tx"]
+    ["'","cas"],
+    ["sum","txt"]
   ];
 
   if(Shift==1,
@@ -266,7 +267,7 @@ RRight():=(
   npos=length(Score);
 );
 
-/ for scriptadd   //220423
+// for scriptadd   //220423
 //  changed  220506
 
 scriptaddstart=1; 
@@ -352,4 +353,18 @@ pplotdata(name1,func,variable,options):=( //220529
   Plotdata("v"+name1,func,variable,["nodisp"]);
   tmp=Adjust("grv"+name1);
   Listplot("-gr"+name1,tmp,options);
+);
+
+Quesno():=( //220728
+  regional(tmp,out);
+  // quL,nqu
+  out="";
+  tmp=select(1..nqu,substring(quL_#,0,1)=="Q");
+  if(length(tmp)>0,
+    tmp=tmp_(-1);
+    out=quL_tmp;
+    tmp=indexof(out," ");
+    if(tmp>0,out=substring(out,0,tmp-1));
+  );
+  out;
 );

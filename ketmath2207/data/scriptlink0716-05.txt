@@ -1,4 +1,0 @@
-LinkL=[
-  ["ketmathruledisplay.html"]
-//  ["https://s-takato.github.io/polytech22/offlineapp/napierv3jsoffL.html","ネイピア数"]
-];

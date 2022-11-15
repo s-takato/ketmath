@@ -13,3 +13,4 @@ Mxcalc
 [2] cos(2x)
 o2:diff(i2,x)
 return i1::o2
+

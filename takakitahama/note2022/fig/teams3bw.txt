@@ -1,0 +1,8 @@
+%%Title: teams3bw.pdf
+%%Creator: extractbb 20210318
+%%BoundingBox: 2 139 842 450
+%%HiResBoundingBox: 1.608290 139.033000 841.680000 449.895200
+%%PDFVersion: 1.4
+%%Pages: 1
+%%CreationDate: Mon Nov 21 07:15:10 2022
+

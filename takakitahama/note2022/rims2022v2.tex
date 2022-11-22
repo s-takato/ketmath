@@ -56,24 +56,24 @@ Takuya Kitamoto, Faculty of Education, Yamaguchi University
 
 \section{KeTCindyとKeTCindyJS}
 
-Cinderellaは，1993年から1999年にかけて，J.Richter-Gebert氏とU.H.Kortenkamp氏によって開発された動的幾何である(\cite{Cinderella1})．さらに，両氏はCinderellaに3D機能やプログラム言語CindyScriptを組み込んだCinderella.2（以下Cindy）をリリースした(\cite{Cinderella2})．
-CindyScriptは通常の言語に近く，数値や文字列のデータおよびファイル操作が可能である．一方，著者（高遠）のグループは，2006年以来，図のデータからMaple, Mathematica, Scilab, Rにより\TeX の描画コードTpic を書き出して，\TeX 文書の図作成に利用するためのマクロ集\ketpic を開発してきた．この\ketpic の対話性をより高めるために，著者らは2014年にKortenkamp氏を招聘してジョイントワークショップを開き，その成果として\ketcindy の最初の
+Cinderellaは，1993年から1999年にかけて，J.Richter-Gebert氏とU.H.Kortenkamp氏によって開発された動的幾何システムである(\cite{Cinderella1})．さらに，両氏はCinderellaに3D機能やプログラム言語CindyScriptを組み込んだCinderella.2（以下Cindy）をリリースした(\cite{Cinderella2})．
+CindyScriptは通常の言語に近く，数値や文字列のデータ処理およびファイル操作が可能である．一方，著者（高遠）のグループは，2006年以来，図のデータからMaple, Mathematica, Scilab, Rにより\TeX の描画コードTpic を書き出して，\TeX 文書の図作成に利用するためのマクロ集\ketpic を開発してきた．この\ketpic の対話性をより高めるために，著者らは2014年にKortenkamp氏を招聘してジョイントワークショップを開き，その成果として\ketcindy の最初の
 バージョン1.0ができあがった．\ketcindy は以下の流れで\TeX の図を作成する．\vspace{-2mm}
 
 \begin{enumerate}
 \item \ketcindy の雛形ファイルをクリックして，Cindyを立ち上げる．\\
 ・\ketcindy のマクロライブラリ読み込みと実行ボタンの配置が実行される．\\
-・なお最近のCindyでは，Kortenkamp氏に依頼して\ketcindy で用いられる\\
+・なお最近のCindyでは，Kortenkamp氏に要請して\ketcindy で用いられる\\
 　Java関数群を最初から\verb|KetCindyPlugin.jar|として組み込んでもらっている．\vspace{-2mm}
 \item Cindyの幾何要素（点など）と\ketcindy の描画関数から画面上に図を作成する．\\
-・画面の図を見ながら，幾何要素と描画関数の引数などを変更することができる．\\
-・同時に描画コード作成のためのRコマンドリスト（\verb|GLIST|）が作成される．
+・画面の図を見ながら，幾何要素や描画関数の引数を変更することができる．\\
+・同時に描画コード作成のためのRコマンドリスト（\verb|GLIST|）を内部で作成する．
 
 \vspace{-2mm}
 \item 画面上の\verb|Figure|（描画ファイル作成ボタン）をクリックするとRが呼び出される．\\
-・まず，(3)の\verb|GCLIST|により描画コードから成る\TeX ファイルが作成される．\\
+・まず，2の\verb|GLIST|により描画コードから成る\TeX ファイルを作成する．\\
 ・次に\TeX を起動して，確認用の\TeX ファイルをコンパイル，PDFを作成する．\\
-　　注：図ファイルは\verb|\input|でメインファイルに挿入される．\vspace{-1mm}
+　　注：図ファイルは\verb|\input|で\TeX ファイルに挿入される．\vspace{-1mm}
 \end{enumerate}
 
 \ketcindy からは，RだけでなくMaximaやgccを呼び出すこともできる．gccは\ketcindy 曲面描画の隠線処理を高速化するためのものである．また，Maximaの数式処理計算の呼び出しは，例えば次のように行われる．\vspace{-1mm}
@@ -89,12 +89,12 @@ CindyScriptは通常の言語に近く，数値や文字列のデータおよび
 　\verb|  "o1:integrate([i1,i2],x)",[],|\\
 　\verb|  "o1[1]::o[2]",[]|\\
 　\verb|];|\\
-　\verb|CalcbyM("ans",cmdL,[]|\\
+　\verb|CalcbyM("ans",cmdL,[]);|\\
 ・実行は，上記コマンドをScriptEditorに記述して\verb|Figure|を押すだけでよい．\\
 ・結果は\verb|ans=[1/3*x^3-2*x,log(x)-cos(x)]"|となる．\vspace{-1mm}
 \end{itemize}
 
-2016年，ミュンヘン工科大学のGebert研究室グループは，Cindyとほぼ互換なHTMLコンテンツを作成するフレームワークCindyJSを開発した\footnote{「CindyJS」で検索すると URL https://cindyjs.orgが見つけられる}．これに対応して，CindyにもCindyJSのHTMLを書き出す機能が追加された．そこで，著者らは\ketcindy で定義されている関数を組み込んだHTMLを作成する機能\ketcindy JSを\ketcindy に追加した．\ketcindy の組み込みの手順は以下の通りである．\vspace{-2mm}
+2016年，ミュンヘン工科大学のGebert研究室グループは，Cindyとほぼ互換なHTMLコンテンツを作成するフレームワークCindyJSを開発して公表した\footnote{「CindyJS」で検索すると URL https://cindyjs.orgが見つけられる}．これに対応して，CindyにもCindyJSのHTMLを書き出す機能が追加された．そこで，著者らは\ketcindy で定義されている関数を組み込んだHTMLを作成する機能\ketcindy JSを\ketcindy に追加した．\ketcindy の組み込みの手順は以下の通りである．\vspace{-2mm}
 
 \begin{enumerate}
 \item Cindyファイル（例えばsample.cdyとする）のトップメニューにある「HTMLに書き出す」を選択してCindyJSのHTMLファイルsample.htmlを出力する．\vspace{-2mm}
@@ -120,8 +120,8 @@ CindyScriptは通常の言語に近く，数値や文字列のデータおよび
 
 \section{KeTMathの開発とkettaskによる問題の配付}
 
-2020年度はコロナ流行のため，多くの教育機関でオンライン授業の利用など，従来の授業方式の変更を余儀なくされた．著者の1人（高遠）が数学を担当している短期大学校でも，授業開始が6月に延期された上に，対面方式にせよ接触をできるだけ避ける工夫が必要となった．講義については，東邦大に所属するときからずっと\TeX で作成したスライドを使用していた\footnote{スライドには適宜\ketcindy で作成したフリップアニメーションを挿入している．}ので，オンラインでも，双方向性を保ち授業の流れが単調にならないように工夫することで容易に対応できたが，課題のやりとりでは数式をどうするかが大きな問題になった．そこで，1次元の簡易数式ルールを作り，そのルールに従って記述された数式を即時に2次元\TeX 数式に変換して表示するHTMLアプリKeTMathを\ketcindy JSで開発した\footnote{「ketcindy samples」の他に「ketcindy home」にアクセスしてそのまま利用することができる．}．例えば，
-分数$\dfrac{a}{b}$，平方根$\sqrt{x}$は，KeTMathルールではそれぞれfr(a,b),\ sq(x)と記述すればよい．KeTMathの初期バージョンでは，PCやスマホのキーボードを用いてKeTMath数式を入力すようにしていたが，スマホのキーボードは種類が多いために，特殊記号を誤って入力してしまうという欠点があった．そこで，KeTMathの画面上にキーボードを配置するようにした．
+2020年度はコロナ流行のため，多くの教育機関でオンライン授業の利用など，従来の授業方式の変更を余儀なくされた．著者の1人（高遠）が数学を担当している短期大学校でも，授業開始が6月に延期された上に，対面方式にせよ接触をできるだけ避ける工夫が必要となった．講義については，東邦大に所属するときからずっと\TeX で作成したスライドを使用していた\footnote{スライドには適宜\ketcindy で作成したフリップアニメーションを挿入している．}ので，オンラインでも，双方向性を保ち授業の流れが単調にならないように工夫することで容易に対応できたが，プリントやPDFを用いない課題のやりとりでは数式をどうするかが問題になる．そこで，1次元の簡易数式ルールを作り，そのルールに従って記述された数式を即時に2次元\TeX 数式に変換して表示するHTMLアプリKeTMathを\ketcindy JSで開発した\footnote{「ketcindy samples」の他に「ketcindy home」にアクセスしてそのまま利用することができる．}．例えば，
+分数$\dfrac{a}{b}$，平方根$\sqrt{x}$は，KeTMathルールではそれぞれfr(a,b),\ sq(x)と記述する．KeTMathの初期バージョンでは，PCやスマホのキーボードを用いてKeTMath数式を入力すようにしていたが，スマホのキーボードは種類が多いために，特殊記号を誤って入力してしまうという欠点があった．そこで，KeTMathの画面上にキーボードを配置するようにした．
 
 \begin{center}
 \includegraphics[bb=0.00 0.00 661.00 660.00,height=90mm]{fig/ketmathbw.pdf}\hspace{5mm}
@@ -138,9 +138,9 @@ replace(置換)\\
 などをketcindyに組み込んでいる．
 
 また，KeTMath数式をCindy形式に変換するTocindyform，Maxima形式に変換するTomaxformも追加した．これらの関数を用いれば，1つのKeTMath数式から，\TeX だけでなくグラフを描くための関数形式やMaximaで数式計算するための関数形式を出力することもできる．\\
-\hspace*{4zw}Totexform("fr(1,x)") $\Longrightarrow$\verb|\frac{1}{x}|\\
-\hspace*{4zw}Tocindyform("fr(1,x)")  $\Longrightarrow$ \verb|(1)/(x)|\\
-\hspace*{4zw}Tomaxform("fr(1,x)")  $\Longrightarrow$ \verb|(1)/(x)|
+\hspace*{4zw}Totexform("fr(pi,4)") $\Longrightarrow$\verb|\dfrac{{\pi}}{4}|\\
+\hspace*{4zw}Tocindyform("fr(1,x)")  $\Longrightarrow$ \verb|(pi)/(4)|\\
+\hspace*{4zw}Tomaxform("fr(1,x)")  $\Longrightarrow$ \verb|(%pi)/{4)|
 
 \vspace{1mm}
 
@@ -174,7 +174,7 @@ KeTMathで確認してから教員にメールなどで送信する．\vspace{-2
 それぞれの雛形ファイルから問題ごとのファイルを生成する\ketcindy のプログラムtoolketmath.cdyを開発した．また，問題の配付と回収はオンライン学習システム（以下OLS）の1つであるGoogle Classroom（以下GC）を利用することにした\footnote{個人ベースだったのでGCを用いたが，TeamsやMoodleなどでも同様である．}．まず，課題の配付については次のようにする．\vspace{-1mm}
 \begin{enumerate}
 \item 1つのフォルダにkettaskorg.html, ketscoreorg.html, toolketmath.cdy\footnote{\ketcindy のライブリを使うため，「ketcindy home」からダウンロードしてインストールしておく．}とCindyJSとKaTeXのライブラリフォルダketcindyjsを入れて，フォルダdataを作成する．\vspace{-2mm}
-\item dataの中に学生リスト(student2022.txtなど)とKeTMathルールをベースとした文法に従ってKeTMathルールで記述された問題ファイル(question1130-01.txtなど)を入れる．\\
+\item dataの中に学生リストstudent2022.txtとKeTMathルールで記述された問題ファイルquestion1130-01.txt\footnote{2022は年，1130-01は授業日(回数)と問題番号．以下のファイルでは省略．}を入れる．\vspace{3mm}\\
 \begin{minipage}[t]{68mm}
 \begin{center}
 学生リスト
@@ -198,10 +198,10 @@ KeTMathで確認してから教員にメールなどで送信する．\vspace{-2
 \hspace*{2zw}Ans\hfill{\small 注)正解}\\
 \hspace*{2zw}$[1]$ 4x\^{}3-9x\^{}2+2x+2\\
 \hspace*{2zw}$[2]$ e{}\^{}x+fr(1,x)\\
-\end{minipage}\vspace{-1mm}
+\end{minipage}\vspace{-2mm}
 
 \item toolketmath.cdyを立ち上げ，「tasklineを作成」と「kettaskに組み込み」の
-ボタンを押すと，問題，解答欄，学生データを組み込んだkettask1130-01.html(以下kettask.html)ができる．\vspace{-2mm}
+ボタンを押すと，問題，解答欄，学生データを組み込んだkettask.htmlができる．\vspace{-2mm}
 \item kettask.htmlファイルを教員が用いているホスティング\footnote{著者らはgithubのPagesを利用している．}にアップして，リンク先のURLを取得する．\vspace{-2mm}
 \item 4のURLをOLSのテキストをやり取りする機能\footnote{GC, Teams, Moodleではそれぞれ
 「質問」「クイズ」「アンケート」} を用いて学生に配付する．\vspace{-2mm}
@@ -218,8 +218,8 @@ KeTMathで確認してから教員にメールなどで送信する．\vspace{-2
 
 \section{ketscoreによる採点}
 
-学生からの回答は，OLSによって方法は多少異なるが，いずれを用いてもテキストの扱いは共通であり，1つのテキストファイル2anssheet1130-01.txt\footnote{このファイルはtoolketmathで「tasklineを作成」を実行したときに準備される．}に容易にまとめることができる ．次に，toolketmath.cdyを立ち上げて，「scorelineを作成」と「ketscoreに組み込み」のボタンを押すと，問題，正解，配点，学生のデータを組み込んだ採点用のketscore.htmlができる．ketscore.htmlでは学生と問題がマトリックス形に配置されているので，学生ごとまたは問題ごとに採点することができる．画面の上段には正解，中段には学生の解答，下段には問題が表示され，それを見ながら中段の::の後に点数をつけていく．採点が終わったらRecボタンを押すと，下段にすべての解答が1行のテキストとして表示されるので，これを確定データのためのファイル4scoresheet.txt\footnote{scorelineを作成したときに準備される．}にコピー＆ペーストすればよい\footnote{中断して後で再開する場合もRecで表示されるデータをscoresheetに保存しておく．}．採点をMaximaで行うには，
-toolketmathall2を立ち上げて「Maxima採点」のボタンを押すと，Maximaが起動して，問題ごとに得点を追加したファイル%%%
+学生からの回答は，OLSによって方法は多少異なるが，いずれを用いてもテキストの扱いは共通であり，1つのテキストファイル2anssheet.txt\footnote{このファイルはtoolketmathで「tasklineを作成」を実行したときに準備される．}に容易にまとめることができる ．次に，toolketmath.cdyを立ち上げて，「scorelineを作成」と「ketscoreに組み込み」のボタンを押すと，問題，正解，配点，学生のデータを組み込んだ採点用のketscore.htmlができる．ketscore.htmlでは学生と問題がマトリックス形に配置されているので，学生ごとまたは問題ごとに採点することができる．画面の上段には正解，中段には学生の解答，下段には問題が表示され，それを見ながら中段の::の後に点数をつけていく．正解のときは，fullのボタンによってSheetに書かれた配点が入力される．採点が終わったらRecボタンを押すと，下段にすべての解答が1行のテキストとして表示されるので，これを確定データのためのファイル4scoresheet.txt\footnote{scorelineを作成したときに準備される．}にコピー＆ペーストすればよい\footnote{中断して後で再開する場合もRecで表示されるデータをscoresheet.txtに保存しておく．}．採点をMaximaで行うには，
+toolketmath.cdyを立ち上げて「Maxima採点」のボタンを押すと，Maximaが起動して，問題ごとに得点を追加したファイル%%%
 4\_scoresheet.txtが生成される．証明問題のような場合は，
 Sheetの配点の後に\verb|::-1|を追加しておくとMaximaでの採点が実行されない．Maximaでの採点の結果は，scoresheetと同じ1行のテキストである．\\
 \hspace*{2zw}%
@@ -236,13 +236,13 @@ Sheetの配点の後に\verb|::-1|を追加しておくとMaximaでの採点が�
 \addtocounter{figure}{1}Fig.\thefigure\ \ ketscoreの画面\vspace{-1mm}
 \end{center}
 
-KeTTask以前は，解答をKeTMathに入力して確認してから送信するように指導していたが，スマホでは2つのアプリを同時に立ち上げて切り替えて実行することができないため，
+以前は，解答をKeTMathに入力して確認してから送信するように指導していたが，スマホでは2つのアプリを同時に立ち上げて切り替えて実行することができないため，
 KeTMathを使わずにそのまま数式を送信してくる学生が多かった．そのため，Maximaでの採点時にエラーが頻発して実用的とは到底いえなかった．KeTTaskを用いるようになってからは，問題を解くときに即時に\TeX 数式が確認できるようになったので，入力ミスは激減して，Maximaでの採点の実用性が増している．
 
 \section{toolketmathによる結果の返却と分析}
 
-採点が終わって4scoresheet.txtが確定したとき，toolketmath.cdyを立ち上げて
-「成績票の作成」と「個別結合データ」を順に押すと，学生ごと問題ファイルごとの個別成績票st01task1130-01.txt(st01は学生番号，-01は問題ファイル番号)と学生について1つのテキストファイルにした学生ごとの成績票1130totalst01.txtがdata内のサブフォルダに作成される．\vspace{-0.5zw}
+採点が終わって4scoresheet.txtが確定したら，toolketmath.cdyを立ち上げて
+「成績票の作成」と「個別結合データ」を順に押すと，学生ごと問題ファイルごとの個別成績票st01task.txt(st01は学生番号)と学生について1つのテキストファイルにした学生ごとの成績票1130totalst01.txtがdata内のサブフォルダに作成される．\vspace{-0.5zw}
 
 \begin{verbatim}
 　　1130-01の結果
@@ -370,7 +370,7 @@ KeTMathを用いた課題のやりとり（KeT-LMSと呼ぶ）の手順は以下
 \vspace{-2mm}
 
 \begin{enumerate}
-\item \Ltab{80mm}{課題text（問題，解答欄，正解）の作成}教員\vspace{-2mm}
+\item \Ltab{80mm}{課題.txt（問題，解答欄，正解）の作成}教員\vspace{-2mm}
 \item \Ltab{80mm}{課題と解答のためのkettask.htmlの作成}toolketmath\vspace{-2mm}
 \item \Ltab{80mm}{kettask.htmlの配付}OLSのプラットホーム（教員）\vspace{-2mm}
 \item \Ltab{80mm}{解答の作成と返送}学生\vspace{-2mm}
@@ -378,11 +378,11 @@ KeTMathを用いた課題のやりとり（KeT-LMSと呼ぶ）の手順は以下
 \item \Ltab{80mm}{採点用のketscore.htmlの作成}toolketmath\vspace{-2mm}
 \item \Ltab{80mm}{Maximaを一部利用した採点}toolketmath\vspace{-2mm}
 \item \Ltab{80mm}{学生個人の成績票作成}toolketmath\vspace{-2mm}
-\item \Ltab{80mm}{成績票の配付}Dropboxなどのフォルダリンク\vspace{-2mm}
+\item \Ltab{80mm}{成績票の配付}Dropboxリンクなど（toolketmath）\vspace{-2mm}
 \item \Ltab{80mm}{クラス成績表作成}toolketmath\vspace{-2mm}
 \end{enumerate}
 
-上記のうち，１（授業前）と３,５（準備は授業前，配付と回収は授業前中）および９（成績票配付後の学生への通知）は教員の作業，4は学生の作業になるが，
+上記のうち，1（授業前）と3,5（準備は授業前，配付と回収は授業前中）および9（成績票配付後の学生への通知）は教員の作業，4は学生の作業になるが，
 それ以外はすべてtoolketmthのプログラムによって実行されるので，
 教員はtoolketmathのボタンを順に押すだけでよい．
 したがって，Maximaでの採点がエラーなく実行されれば，授業の途中でも課題の配付から返却までをスムーズに行うことができる．Maximaのエラーチェックは，
@@ -391,7 +391,7 @@ KeTMathを用いた課題のやりとり（KeT-LMSと呼ぶ）の手順は以下
 \item KeTCindyの関数Bracketを用いた括弧の整合性チェック\vspace{-2mm}
 \item \verb|^| の不正使用の有無（\verb|sin(^2,x|)など）\vspace{-2mm}
 \end{itemize}
-の２つであるが，今後は通常授業での利用を増やして，エラーを同定し，対応をKeT-LMSに組み込んでいきたい．
+の2つであるが，今後は通常授業での利用を増やして，エラーを同定し，対応をKeT-LMSに組み込んでいきたい．
 
 \vspace{2zw}
 

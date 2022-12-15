@@ -1,0 +1,18 @@
+NIL
+(%i3) powerdisp:false
+(%i4) display2d:false
+(%i5) linel:1000
+(%i6) q1i1:x^3-3*x^2
+(%i7) q1i2:"noans"
+(%i8) q1i3:"noans"
+(%i9) q1o1:diff(q1i1,x)
+(%i10) disp(q1o1)
+3*x^2-6*x
+
+(%i11) disp(q1i2)
+"noans"
+
+(%i12) disp(q1i3)
+"noans"
+
+(%i13) closefile()

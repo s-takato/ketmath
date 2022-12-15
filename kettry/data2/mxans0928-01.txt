@@ -1,0 +1,21 @@
+[4*x^3-9*x^2+2*x+2,3*cos(x)-2*sin(x),%e^x+1/x,sin(x)+x*cos(x),6*%e^(2*x)-2*%e^-x]
+
+Script
+q1i1:x^4-3*x^3+x^2+2*x-3
+q1i2:3*sin(x)+2*cos(x)
+q1i3:(exp(1))^(x)+log(x)
+q1i4:x*sin(x)
+q1i5:3*(exp(1))^(2*x)+2*(exp(1))^(-x)
+q1o1:diff([q1i1,q1i2,q1i3,q1i4,q1i5],x)
+q1o1[1]::q1o1[2]::q1o1[3]::q1o1[4]::q1o1[5]
+end
+
+Check
+(4*x^3-9*x^2+2*x+2)  -  (4*x^3-9*x^2+2*x+2)
+(3*cos(x)-2*sin(x))  -  (3*cos(x)-2*sin(x))
+((exp(1))^x+(1)/(x))  -  (%e^x+1/x)
+(sin(x)+x*cos(x))  -  (sin(x)+x*cos(x))
+(6*(exp(1))^(2*x)-2*(exp(1))^(-x))  -  (6*%e^(2*x)-2*%e^-x)
+Result
+[0,0,0,0,0]
+end

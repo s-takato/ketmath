@@ -1,0 +1,22 @@
+[1/4,%e^2+1,log(2),%pi^2/2]
+
+Script
+q1i1:x^3
+q1i2:(exp(1))^(x)+1
+q1i3:(1)/(x)
+q1i4:cos(x)+x
+q1o1:integrate(q1i1,x,0,1)
+q1o2:integrate(q1i2,x,0,2)
+q1o3:integrate(q1i3,x,1,2)
+q1o4:integrate(q1i4,x,0,%pi)
+q1o1::q1o2::q1o3::q1o4
+end
+
+Check
+((1)/(4))  -  (1/4)
+((exp(1))^(2)+1)  -  (%e^2+1)
+(log(2))  -  (log(2))
+((%pi^2)/(2))  -  (%pi^2/2)
+Result
+[0,0,0,0]
+end

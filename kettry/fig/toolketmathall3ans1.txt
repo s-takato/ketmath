@@ -1,0 +1,13 @@
+NIL
+(%i3) powerdisp:false
+(%i4) display2d:false
+(%i5) linel:1000
+(%i6) c1:1/2-1/2
+(%i7) c2:inf-[sqrt(3)/2,1/sqrt(2)]
+(%i8) disp(c1)
+0
+
+(%i9) disp(c2)
+[inf-sqrt(3)/2,inf-1/sqrt(2)]
+
+(%i10) closefile()

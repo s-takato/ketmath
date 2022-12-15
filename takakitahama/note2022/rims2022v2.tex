@@ -87,11 +87,11 @@ CindyScriptは通常の言語に近く，数値や文字列のデータ処理お
 　\verb|  "i1:x^2-4*x",[],|\\
 　\verb|  "i2:(1)/(x)+sin(x)",[],|\\
 　\verb|  "o1:integrate([i1,i2],x)",[],|\\
-　\verb|  "o1[1]::o[2]",[]|\\
+　\verb|  "o1[1]::o1[2]",[]|\\
 　\verb|];|\\
 　\verb|CalcbyM("ans",cmdL,[]);|\\
-・実行は，上記コマンドをScriptEditorに記述して\verb|Figure|を押すだけでよい．\\
-・結果は\verb|ans=[1/3*x^3-2*x,log(x)-cos(x)]"|となる．\vspace{-1mm}
+・上記コマンドをScriptEditorに記述して，スクリプトを実行すればよい．\\
+・結果は\verb|ans=[1/3*x^3-2*x,log(x)-cos(x)]|となる．\vspace{-1mm}
 \end{itemize}
 
 2016年，ミュンヘン工科大学のGebert研究室グループは，Cindyとほぼ互換なHTMLコンテンツを作成するフレームワークCindyJSを開発して公表した\footnote{「CindyJS」で検索すると URL https://cindyjs.orgが見つけられる}．これに対応して，CindyにもCindyJSのHTMLを書き出す機能が追加された．そこで，著者らは\ketcindy で定義されている関数を組み込んだHTMLを作成する機能\ketcindy JSを\ketcindy に追加した．\ketcindy の組み込みの手順は以下の通りである．\vspace{-2mm}
@@ -118,7 +118,7 @@ CindyScriptは通常の言語に近く，数値や文字列のデータ処理お
 この方法により，総行数を3000行から5000行程度に抑えることを可能にした．また，sample.htmlのファイルサイズはCindyJSとKaTeXのライブラリを除き，ほとんどの場合100KB以下とかなり小さくなっている．
 「ketcindy samples」で検索されるサイト\footnote{https://s-takato.github.io/ketcindysample/}には多くの\ketcindy JSのサンプルが掲載されている．
 
-\section{KeTMathの開発とkettaskによる問題の配付}
+\section{KeTMathの開発とKeTTaskによる問題の配付}
 
 2020年度はコロナ流行のため，多くの教育機関でオンライン授業の利用など，従来の授業方式の変更を余儀なくされた．著者の1人（高遠）が数学を担当している短期大学校でも，授業開始が6月に延期された上に，対面方式にせよ接触をできるだけ避ける工夫が必要となった．講義については，東邦大に所属するときからずっと\TeX で作成したスライドを使用していた\footnote{スライドには適宜\ketcindy で作成したフリップアニメーションを挿入している．}ので，オンラインでも，双方向性を保ち授業の流れが単調にならないように工夫することで容易に対応できたが，プリントやPDFを用いない課題のやりとりでは数式をどうするかが問題になる．そこで，1次元の簡易数式ルールを作り，そのルールに従って記述された数式を即時に2次元\TeX 数式に変換して表示するHTMLアプリKeTMathを\ketcindy JSで開発した\footnote{「ketcindy samples」の他に「ketcindy home」にアクセスしてそのまま利用することができる．}．例えば，
 分数$\dfrac{a}{b}$，平方根$\sqrt{x}$は，KeTMathルールではそれぞれfr(a,b),\ sq(x)と記述する．KeTMathの初期バージョンでは，PCやスマホのキーボードを用いてKeTMath数式を入力すようにしていたが，スマホのキーボードは種類が多いために，特殊記号を誤って入力してしまうという欠点があった．そこで，KeTMathの画面上にキーボードを配置するようにした．
@@ -134,13 +134,13 @@ KeTMathのプログラミングでは文字列の解析が重要である．Cind
 replace(置換)\\
 に加えて，KeTMath数式を解析するための関数\\
 \hspace*{2zw}\Ltab{60mm}{Bracket(文字列,"()")}括弧の位置とレベルを返す\\
-\hspace*{2zw}\Ltab{60mm}{Getlevel(文字列,",","()"}括弧についてのコンマの位置とレベルを返す\\
+\hspace*{2zw}\Ltab{60mm}{Getlevel(文字列,",","()")}括弧についてのコンマの位置とレベルを返す\\
 などをketcindyに組み込んでいる．
 
 また，KeTMath数式をCindy形式に変換するTocindyform，Maxima形式に変換するTomaxformも追加した．これらの関数を用いれば，1つのKeTMath数式から，\TeX だけでなくグラフを描くための関数形式やMaximaで数式計算するための関数形式を出力することもできる．\\
 \hspace*{4zw}Totexform("fr(pi,4)") $\Longrightarrow$\verb|\dfrac{{\pi}}{4}|\\
-\hspace*{4zw}Tocindyform("fr(1,x)")  $\Longrightarrow$ \verb|(pi)/(4)|\\
-\hspace*{4zw}Tomaxform("fr(1,x)")  $\Longrightarrow$ \verb|(%pi)/{4)|
+\hspace*{4zw}Tocindyform("fr(pi,4)")  $\Longrightarrow$ \verb|(pi)/(4)|\\
+\hspace*{4zw}Tomaxform("fr(pi,4)")  $\Longrightarrow$ \verb|(%pi)/{4)|
 
 \vspace{1mm}
 
@@ -170,7 +170,7 @@ KeTMathで確認してから教員にメールなどで送信する．\vspace{-2
 \end{enumerate}
 
 しかし，かなりの数の学生はKeTMathで確認することをせずに間違った数式をそのまま送ってきたり，√2などと特殊文字を使ったりしていた．そこで，問題自体を組み込んだ出題アプリKeTTaskを作成して配付することにした．%%%
-同時に，教員が採点するためののアプリKeTscoreも作成することにして，%%%
+同時に，教員が採点するためののアプリKeTScoreも作成することにして，%%%
 それぞれの雛形ファイルから問題ごとのファイルを生成する\ketcindy のプログラムtoolketmath.cdyを開発した．また，問題の配付と回収はオンライン学習システム（以下OLS）の1つであるGoogle Classroom（以下GC）を利用することにした\footnote{個人ベースだったのでGCを用いたが，TeamsやMoodleなどでも同様である．}．まず，課題の配付については次のようにする．\vspace{-1mm}
 \begin{enumerate}
 \item 1つのフォルダにkettaskorg.html, ketscoreorg.html, toolketmath.cdy\footnote{\ketcindy のライブリを使うため，「ketcindy home」からダウンロードしてインストールしておく．}とCindyJSとKaTeXのライブラリフォルダketcindyjsを入れて，フォルダdataを作成する．\vspace{-2mm}
@@ -216,7 +216,7 @@ KeTMathで確認してから教員にメールなどで送信する．\vspace{-2
 \addtocounter{figure}{1}Fig.\thefigure\ \ toolketmathallとkettaskの画面\vspace{-1mm}
 \end{center}
 
-\section{ketscoreによる採点}
+\section{KeTScoreによる採点}
 
 学生からの回答は，OLSによって方法は多少異なるが，いずれを用いてもテキストの扱いは共通であり，1つのテキストファイル2anssheet.txt\footnote{このファイルはtoolketmathで「tasklineを作成」を実行したときに準備される．}に容易にまとめることができる ．次に，toolketmath.cdyを立ち上げて，「scorelineを作成」と「ketscoreに組み込み」のボタンを押すと，問題，正解，配点，学生のデータを組み込んだ採点用のketscore.htmlができる．ketscore.htmlでは学生と問題がマトリックス形に配置されているので，学生ごとまたは問題ごとに採点することができる．画面の上段には正解，中段には学生の解答，下段には問題が表示され，それを見ながら中段の::の後に点数をつけていく．正解のときは，fullのボタンによってSheetに書かれた配点が入力される．採点が終わったらRecボタンを押すと，下段にすべての解答が1行のテキストとして表示されるので，これを確定データのためのファイル4scoresheet.txt\footnote{scorelineを作成したときに準備される．}にコピー＆ペーストすればよい\footnote{中断して後で再開する場合もRecで表示されるデータをscoresheet.txtに保存しておく．}．採点をMaximaで行うには，
 toolketmath.cdyを立ち上げて「Maxima採点」のボタンを押すと，Maximaが起動して，問題ごとに得点を追加したファイル%%%
@@ -224,7 +224,7 @@ toolketmath.cdyを立ち上げて「Maxima採点」のボタンを押すと，Ma
 Sheetの配点の後に\verb|::-1|を追加しておくとMaximaでの採点が実行されない．Maximaでの採点の結果は，scoresheetと同じ1行のテキストである．\\
 \hspace*{2zw}%
 1 01AA 111411:0:36 Q01---[1] y'=  4x\^{}3-9x\^{}2+2x-3::5 [2] y'=  e\^{}x+fr(1,x)::5$\cdots$\\
-これをketscore.htmlの下段にコピー＆ペーストすれば，ketscoreでの採点と同様にして得点の確認修正をすることができる．
+これをketscore.htmlの下段にコピー＆ペーストすれば，KeTScoreでの採点と同様にして得点の確認修正をすることができる．
 
 
 
@@ -305,10 +305,11 @@ $\cos \bigl(\cos\dfrac{\pi}{3}\bigr)\!=\!0.76$\vspace*{3mm}
 {\bf 問題4．}
 $\tan x$の微分公式を書け．
 
-\vspace{-10mm}
+\vspace{-2mm}
 
 \begin{center}
 \includegraphics[bb=0.00 0.00 820.32 249.12,width=140mm]{fig/teams1bw.pdf}
+\vspace{-2mm}
 
 \addtocounter{figure}{1}Fig.\thefigure\ \ Microsoft Teamsの課題
 \end{center}

@@ -1,0 +1,12 @@
+writefile("/Users/takatoosetsuo/Dropbox/2022ketpic/kettry/fig/toolketmathall2ans5.txt")$/*##*/
+powerdisp:false$/*##*/
+display2d:false$/*##*/
+linel:1000$/*##*/
+c1:"noans"$/*##*/
+c2:((8)/(3))  -  (8/3)$/*##*/
+c3:((5)/(12))  -  (5/12)$/*##*/
+disp(c1)$/*##*/
+disp(c2)$/*##*/
+disp(c3)$/*##*/
+closefile()$/*##*/
+quit()$/*##*/

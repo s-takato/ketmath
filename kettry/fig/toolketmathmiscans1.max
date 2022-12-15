@@ -1,0 +1,16 @@
+writefile("/Users/takatoosetsuo/Dropbox/2022ketpic/kettry/fig/toolketmathmiscans1.txt")$/*##*/
+powerdisp:false$/*##*/
+display2d:false$/*##*/
+linel:1000$/*##*/
+c1:(4*x^3-9*x^2+2*x+2)  -  (4*x^3-9*x^2+2*x+2)$/*##*/
+c2:(3*cos(x)-2*sin(x))  -  (3*cos(x)-2*sin(x))$/*##*/
+c3:((exp(1))^x+(1)/(x))  -  (%e^x+1/x)$/*##*/
+c4:(sin(x)+x*cos(x))  -  (sin(x)+x*cos(x))$/*##*/
+c5:(6*(exp(1))^(2*x)-2*(exp(1))^(-x))  -  (6*%e^(2*x)-2*%e^-x)$/*##*/
+disp(c1)$/*##*/
+disp(c2)$/*##*/
+disp(c3)$/*##*/
+disp(c4)$/*##*/
+disp(c5)$/*##*/
+closefile()$/*##*/
+quit()$/*##*/

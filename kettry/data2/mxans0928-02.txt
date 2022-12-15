@@ -1,0 +1,21 @@
+[x^3/3-2*x^2,sin(x)-cos(x),%e^x+x,log(x)+x^2/2,sin(2*x)/2]
+
+Script
+q1i1:x^2-4*x
+q1i2:sin(x)+cos(x)
+q1i3:(exp(1))^x+1
+q1i4:(1)/(x)+x
+q1i5:cos(2*x)
+q1o1:integrate([q1i1,q1i2,q1i3,q1i4,q1i5],x)
+q1o1[1]::q1o1[2]::q1o1[3]::q1o1[4]::q1o1[5]
+end
+
+Check
+((1)/(3)*x^3-2*x^2)  -  (x^3/3-2*x^2)
+(-cos(x)+sin(x))  -  (sin(x)-cos(x))
+((exp(1))^x+x)  -  (%e^x+x)
+(log(x)+(1)/(2)*x^2)  -  (log(x)+x^2/2)
+((1)/(2)*sin(2*x))  -  (sin(2*x)/2)
+Result
+[0,0,0,0,0]
+end

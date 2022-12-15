@@ -1,0 +1,17 @@
+NIL
+(%i3) powerdisp:false
+(%i4) display2d:false
+(%i5) linel:1000
+(%i6) c1:"noans"
+(%i7) c2:8/3-8/3
+(%i8) c3:5/12-5/12
+(%i9) disp(c1)
+"noans"
+
+(%i10) disp(c2)
+0
+
+(%i11) disp(c3)
+0
+
+(%i12) closefile()

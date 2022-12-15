@@ -1,0 +1,25 @@
+NIL
+(%i3) powerdisp:false
+(%i4) display2d:false
+(%i5) linel:1000
+(%i6) c1:((1/3)*x^3-2*x^2)-(x^3/3-2*x^2)
+(%i7) c2:((-cos(x))+sin(x))-('integrate('realpart(cq1os(x)),x)-cos(x))
+(%i8) c3:(exp(1)^x+x)-(%e^x+x)
+(%i9) c4:(log(x)+(1/2)*x^2)-(log(x)+x^2/2)
+(%i10) c5:(1/2)*sin(2*x)-'integrate(cq1os(2*x),x)
+(%i11) disp(c1)
+0
+
+(%i12) disp(c2)
+sin(x)-'integrate('realpart(cq1os(x)),x)
+
+(%i13) disp(c3)
+0
+
+(%i14) disp(c4)
+0
+
+(%i15) disp(c5)
+sin(2*x)/2-'integrate(cq1os(2*x),x)
+
+(%i16) closefile()

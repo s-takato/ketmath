@@ -1,0 +1,26 @@
+NIL
+(%i3) powerdisp:false
+(%i4) display2d:false
+(%i5) linel:1000
+(%i6) q1i1:x^4-3*x^3+x^2+2*x-3
+(%i7) q1i2:3*sin(x)+2*cos(x)
+(%i8) q1i3:exp(1)^x+log(x)
+(%i9) q1i4:x*sin(x)
+(%i10) q1i5:3*exp(1)^(2*x)+2*exp(1)^-x
+(%i11) q1o1:diff([q1i1,q1i2,q1i3,q1i4,q1i5],x)
+(%i12) disp(q1o1[1])
+4*x^3-9*x^2+2*x+2
+
+(%i13) disp(q1o1[2])
+3*cos(x)-2*sin(x)
+
+(%i14) disp(q1o1[3])
+%e^x+1/x
+
+(%i15) disp(q1o1[4])
+sin(x)+x*cos(x)
+
+(%i16) disp(q1o1[5])
+6*%e^(2*x)-2*%e^-x
+
+(%i17) closefile()

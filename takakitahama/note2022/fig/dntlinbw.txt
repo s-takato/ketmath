@@ -1,8 +1,0 @@
-%%Title: dntlinbw.pdf
-%%Creator: extractbb 20210318
-%%BoundingBox: 0 0 898 578
-%%HiResBoundingBox: 0.000000 0.000000 898.000000 578.000000
-%%PDFVersion: 1.4
-%%Pages: 1
-%%CreationDate: Sat Nov 12 13:00:13 2022
-

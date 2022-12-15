@@ -1,6 +1,0 @@
-writefile("/Users/takatoosetsuo/Dropbox/2022ketpic/kettry/fig/toolketmathmiscansquestion0928-05.txt")$/*##*/
-powerdisp:false$/*##*/
-display2d:false$/*##*/
-linel:1000$/*##*/
-closefile()$/*##*/
-quit()$/*##*/

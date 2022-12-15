@@ -1,7 +1,0 @@
-quline="Q01::次の三角関数の値を求めよ．	[1]:: sin(!fr(pi,6))	[2]:: cos(!fr(5,6)pi)";
-shline="Q01---	[1]= 	[2]= ";
-caline="Q01::	[1]::fr(1,2)	[2]::-fr(sq(3),2)";
-mrkline="0	2	2";
-mxscline="0	1	1";
-sqline="01AA	2	2	2CR02BB	2	2	2CR03CC	2	2	2";
-ansline="1	01AA	未提出CR2	02BB	未提出CR3	03CC	未提出";

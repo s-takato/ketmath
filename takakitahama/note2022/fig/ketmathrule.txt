@@ -1,8 +1,0 @@
-%%Title: ketmathrule.pdf
-%%Creator: extractbb 20210318
-%%BoundingBox: 0 0 463 723
-%%HiResBoundingBox: 0.000000 0.000000 463.000000 723.000000
-%%PDFVersion: 1.4
-%%Pages: 1
-%%CreationDate: Sat Nov 12 10:40:16 2022
-

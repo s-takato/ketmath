@@ -1,8 +1,0 @@
-%%Title: dntcalbw.pdf
-%%Creator: extractbb 20210318
-%%BoundingBox: 0 0 906 577
-%%HiResBoundingBox: 0.000000 0.000000 906.000000 577.000000
-%%PDFVersion: 1.4
-%%Pages: 1
-%%CreationDate: Mon Nov 14 09:34:50 2022
-

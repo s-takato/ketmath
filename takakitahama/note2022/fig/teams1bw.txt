@@ -1,8 +1,0 @@
-%%Title: teams1bw.pdf
-%%Creator: extractbb 20210318
-%%BoundingBox: 0 0 820 249
-%%HiResBoundingBox: 0.000000 0.000000 820.320000 249.120000
-%%PDFVersion: 1.4
-%%Pages: 1
-%%CreationDate: Mon Nov 21 07:21:15 2022
-

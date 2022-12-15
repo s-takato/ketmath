@@ -1,8 +1,0 @@
-%%Title: teams2bw.pdf
-%%Creator: extractbb 20210318
-%%BoundingBox: 1 183 842 416
-%%HiResBoundingBox: 1.445964 182.889800 841.680000 416.105000
-%%PDFVersion: 1.4
-%%Pages: 1
-%%CreationDate: Mon Nov 21 07:16:52 2022
-

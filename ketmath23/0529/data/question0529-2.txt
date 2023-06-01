@@ -1,0 +1,27 @@
+Q
+底を変換して計算せよ
+[1] log(4,32)
+[2] log(9,3)
+[3] log(3,2)log(2,27)
+[4] log(a,b)(cross)log(b,a)
+Sheet
+[1]=  ::2
+[2]=  ::2
+[3]=  ::2
+[4]=  ::2
+Ans
+[1] fr(5,2)
+[2] fr(1,2)
+[3] 3
+[4] 1
+Mxcalc
+assume(a>0)
+assume(b>0)
+[1] log(a^2,a^5)
+[2] log(b^2,b)
+[3] log(b,a)log(a,b^3)
+[4] log(a,b)log(b,a)
+o1:float(i1)
+o2:float(i2)
+o3:float(i3)
+return i1::i2::i3::i4

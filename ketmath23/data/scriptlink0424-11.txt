@@ -1,3 +1,0 @@
-LinkL=[
-  ["img src","data/loaded/kainokousiki.png","style="+Dqq("width:700px")]
-];

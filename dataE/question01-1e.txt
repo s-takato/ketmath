@@ -1,0 +1,15 @@
+Q
+Answer questions.
+[1] Differenciate sin(2x).
+[2] Intergrate sin(2x) from 0 to fr(pi,2).
+Sheet
+[1]= ::5
+[2]= ::5
+Ans
+[1] 2cos(2x)
+[2] 
+Mxcalc
+[1] sin(2x)
+o1:diff(i1,x)
+o2:integrate(i1,x,0,%pi/2)
+return o1::o2

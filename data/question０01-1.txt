@@ -10,6 +10,7 @@ Ans
 [2] 1
 Mxcalc
 [1] sin(2x)
+[2] fr(pi,2)
 o1:diff(i1,x)
-o2:integrate(i1,x,0,%pi/2)
+o2:integrate(i1,x,0,i2)
 return o1::o2

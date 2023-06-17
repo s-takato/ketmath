@@ -11,6 +11,7 @@ Ans
 Mxcalc
 [1] sin(2x)
 [2] fr(pi,2)
-o1:diff(i1,x)
-o2:integrate(i1,x,0,i2)
+f(x):=i1
+o1:diff(f(x),x)
+o2:integrate(f(x),x,0,i2)
 return o1::o2

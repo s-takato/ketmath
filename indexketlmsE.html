@@ -21,7 +21,7 @@ ul li::before {
 <body>  
 <div style="padding: 50px">  
 <p><font size="10">&emsp;How to use KeT-LMS</font>  
-<font size="6">&emsp;&emsp;&emsp;&emsp;2023-06-17</font></p> 
+<font size="6">&emsp;&emsp;&emsp;&emsp;2023-06-18</font></p> 
 <!--<div style="text-align: center">
 <img class="size2" src="ketmathscreen.png" alt="KeTMath画面">
 </div>-->
@@ -109,37 +109,37 @@ ul li::before {
   <li>6. Push 'Go' to embed the file to kettask(qn).html.</li>
   </ol>
   
-<font size="6"><li>[6] ketscoreによる採点</font>
+<font size="6"><li>[6] Scoring with ketscore.html</font>
   <ol>
-  <li>1. 回収したデータをdata/anssheetallにコピーする</li>
-  <li>2. Anssheet分割 を選び，実行する</br>
-  &emsp;&emsp;&emsp;問題ごとのanssheet.txtにコピーされる</li>
-  <li>3. scoreline作成 を選び，実行する</br>
-　　　　　4scoreline(qn).txtができる</li>
-  <li>4. ketscore組込 を選び，実行する</br>
-　　　　　ketscorev(qn).htmlができる</li>
- <li>5. Maximaによる採点を選び，実行する</br>
-　　　(1) エラーがある場合</br>
+  <li>1. Copy the collected responses to ’data/anssheetall.txt'</li>
+  <li>2. Select 'anssheetall' to execute.</br>
+  &emsp;&emsp;&emsp;Each answers will be copied to anssheet(qn).txt</li>
+  <li>3. Select 'scoreline' to execute.</br>
+　　　　　'4scoreline(qn).txt' will be generated.</li>
+  <li>4. Select 'ketscore' to execute.</br>
+　　　　　'ketscorev(qn).html' will be generated.</li>
+ <li>5. Select 'Maxima' to execute. (optional)</br>
+　　　(1) Case of some errors:</br>
 &emsp;&emsp;&emsp;・errormaxima(d).txtに追加される</br>
-&emsp;&emsp;&emsp;・3scoreline(qn)を修正する</br>
-&emsp;&emsp;&emsp;・そのファイルだけを選んで強制的に実行</br>
-&emsp;&emsp;&emsp;・エラーがなくなるまで繰り返し行う</br>
-　　　(2) 4_scoresheet(qn)ができる</li>
-  <li>6. ketscore(qn).htmlを立ち上げる</br>
-  &emsp;&emsp;&emsp;  4_scoresheetI(qn)の中身を最下欄にコピー</br>
+&emsp;&emsp;&emsp;・Modify '3scoreline(qn).txt'.</br>
+&emsp;&emsp;&emsp;・Force 'Maxima' to run with only that file.</br>
+&emsp;&emsp;&emsp;・Repeat until there are no more errors.</br>
+　　　(2) '4_scoresheet(qn).txt' will be generated.</li>
+  <li>6. Launch 'ketscore(qn).html'</br>
+  &emsp;&emsp;&emsp;  Copy the contents of '4_scoresheetI(qn).txt' to the bottom input box.</br>
   </li>
-  <li>7. st, pgを動かして，得点を確認修正する</br>
-  &emsp;&emsp;&emsp;・コメントは，点数のあとに :: をつけて書く</li>
-  <li>8. Rec を押し，最下欄の行を4_scoresheetの2行目にコピー</br>
-  &emsp;&emsp;&emsp;・Maxima採点しないときは，4scoresheetallにコピー  
+  <li>7. Check and correct the score moving st and pg./br>
+  &emsp;&emsp;&emsp;・Comments can be added after the score and  '::"</li>
+  <li>8. Push 'Rec' and copy the line in the bottom box on the second line of '4_scoresheet.txt'.</br>
+  &emsp;&emsp;&emsp;・Case of no scoring with Maxima, add it to '4scoresheetall.txt'  
   </li>
-  <li>9. scoresheet分割 を押すと，問題別のファイルができる</li>
+  <li>9. Push 'scoresheet', then each '4scoreline(qn)".txt will be generated.</li>
   </ol>
-<font size="6"><li>[7] 返却と集計</font>
+<font size="6"><li>[7] Returning results and summaries</font>
   <ol>
-  <li>1. 8と9のボタンで学生ごとの成績票を作成する</li>
-  <li>2. 11を押すと，Dropboxの学生ごとのフォルダにコピーされる</li>
-  <li>3. 10の総括ファイル を押すと，成績一覧表ができる．</li>
+  <li>1. Button 8 and 9 will generate the result of each student.</li>
+  <li>2. Copy that result to Dropbox per-student folder with button 10.</li>
+  <li>3. button 11 will generate summaries.</li>
   </ol>
   
 </ol>

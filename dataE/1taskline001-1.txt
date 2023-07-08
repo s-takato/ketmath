@@ -1,3 +1,0 @@
-quline="Q01::Answer questions.	[1]:: Differenciate sin(2x).	[2]:: Intergrate sin(2x) from 0 to fr(pi,2).";
-shline="Q01---	[1]= 	[2]= ";
-sqline="01AA	2	2	2CR02BB	2	2	2CR03CC	2	2	2";

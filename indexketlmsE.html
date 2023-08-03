@@ -29,7 +29,7 @@ ul li::before {
 <ol>
 <font size="6"><li>Preparation</font>
   <ol>
-    <li>1. Update ketcindy to 4.4.35 or later.</li>
+    <li>1. Update ketcindy to the latest version(4.4.37).</li>
     <li>2. Download <a href="https://github.com/s-takato/ketmath">ket-lms</a>.
       <ul>
       <li>Click Releases/Latest (version).</li>
@@ -103,9 +103,10 @@ ul li::before {
   <ol>
   <li>1. Launch tooldraw(d).cdy and press 'Export to html'</li>
   <li>2. Put the script file '(qn)draw.txt in the folder 'drwdata'.</li>
-      &emsp;&emsp;&emsp;* Mvpt, Rmpt, Mvdraw are available</br>
+      &emsp;&emsp;&emsp;* Mvpt, Rmpt, Mvdraw, Mviist, Mvplotdata, Mvdrwxy are available</br>
       &emsp;&emsp;&emsp;* Put 'use(A,B,...)' at the top ine,when using geometric points</br>
-      &emsp;&emsp;&emsp;* Lines starting with // ending with // will be added when embedding.
+      &emsp;&emsp;&emsp;* Lines starting with // ending with // will be added when embedding.</br>
+      &emsp;&emsp;&emsp;* Contents of if(ketlibflg==1 block will be added to ketlib slot.
    <li>3. Click 'Imag" in tooldraw(d).cdy to change it 'Draw'.</li>
   <li>4. Determine the center and the scale of the figure moving O, S.</li>
   <li>5. Pressing 'Save OS', positions of O, S will be saved to 'kettaskv(qn)os.txt'.</li>
@@ -123,7 +124,7 @@ ul li::before {
 　　　　　'ketscorev(qn).html' will be generated.</li>
  <li>5. Select 'Maxima' to execute. (optional)</br>
 　　　(1) Case of some errors:</br>
-&emsp;&emsp;&emsp;・errormaxima(d).txtに追加される</br>
+&emsp;&emsp;&emsp;・Errors will be added to errormaxima(d).txt.</br>
 &emsp;&emsp;&emsp;・Modify '3scoreline(qn).txt'.</br>
 &emsp;&emsp;&emsp;・Force 'Maxima' to run with only that file.</br>
 &emsp;&emsp;&emsp;・Repeat until there are no more errors.</br>

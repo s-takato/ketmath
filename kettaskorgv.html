@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     
-    <title>kettaskorgv.cdy</title>
+    <title>kettaskorgva.cdy</title>
     <style type="text/css">
         * {
             margin: 0px;
@@ -4141,6 +4141,7 @@ Quesno(nq,flg):=( //220816
 tail=Readlines(Dircdy,"ketmathrulein.html");
 tail=append(tail,Copyright());
 
+
 ketlibflg=1;
 
 startflg=1;
@@ -4193,7 +4194,6 @@ ch=2;
 </script>
 <script id="csdraw" type="text/x-cindyscript">
 Ketinit(1.6);
-
 
 if(startflg==1,
   Kettaskinit();
@@ -4624,13 +4624,17 @@ var cdy = CindyJS({
     {name: "Text16", type: "Button", pos: [4.0, -0.42271293375394325, 0.06309148264984227], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "if(Shift!=1,Shift=1,Shift=0);", text: "　　", textsize: 14.0},
     {name: "Text17", type: "Button", pos: [4.0, -0.6309148264984227, 0.06309148264984227], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "if(Shift!=2,Shift=2,Shift=0);", text: "　　", textsize: 14.0},
     {name: "Text19", type: "Button", pos: [4.0, -0.9676511954992967, 0.05625879043600563], color: [0.0, 0.0, 0.0], fillcolor: [0.0, 1.0, 0.0], fillalpha: 0.27272728085517883, script: "stok=stok+1;", text: "O  K", textsize: 16.0},
-    {name: "Text5", type: "Button", pos: [4.0, 0.06095238095238095, 0.0761904761904762], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "nqinc=1;", text: "　　", textsize: 14.0}
+    {name: "Text5", type: "Button", pos: [4.0, 0.06095238095238095, 0.0761904761904762], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "nqinc=1;", text: "　　", textsize: 14.0},
+    {name: "Text371", type: "Button", pos: [4.0, -1.6106666666666667, 0.05333333333333334], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 0.737, 0.467], fillalpha: 0.47, script: "resetclock();playanimation();Animeflg=1;Dirflg=1;\n        sorg=Current;", text: "Play", textsize: 18.0},
+    {name: "Text372", type: "Button", pos: [4.0, -1.51, 0.05], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 0.737, 0.467], fillalpha: 0.47, script: "Animeflg=1-Animeflg;if(Animeflg==0,pauseanimation();\n        sorg=sstart;,resetclock();playanimation(););", text: "Pause", textsize: 18.0},
+    {name: "Text373", type: "Button", pos: [4.0, -1.3885057471264368, 0.04597701149425287], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 0.737, 0.467], fillalpha: 0.47, script: "sorg=sstart;Dirflg=-Dirflg;Animeflg=1;resetclock();\n        playanimation();", text: "Rev", textsize: 18.0},
+    {name: "Text374", type: "Button", pos: [4.0, -1.3130434782608695, 0.043478260869565216], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 0.737, 0.467], fillalpha: 0.47, script: "stopanimation();Animeflg=\"\";sstart=Current;", text: "Stop", textsize: 18.0}
   ],
   ports: [{
-    width: 890,
-    height: 647,
+    width: 980,
+    height: 615,
     id: "CSCanvas",
-    transform: [{visibleRect: [9.11628174039871, 27.039818721521595, 100.79414331051002, -39.60689637495258]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 109.44688530139692, -36.00158721208303]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

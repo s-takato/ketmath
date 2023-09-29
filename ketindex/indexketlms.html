@@ -21,7 +21,7 @@ ul li::before {
 <body>  
 <div style="padding: 50px">  
 <p><font size="10">&emsp;KeT-LMSの使い方</font>  
-<font size="6">&emsp;&emsp;&emsp;&emsp;2023-09-10</font></p> 
+<font size="6">&emsp;&emsp;&emsp;&emsp;2023-09-29</font></p> 
 <!--<div style="text-align: center">
 <img class="size2" src="ketmathscreen.png" alt="KeTMath画面">
 </div>-->
@@ -82,7 +82,7 @@ ul li::before {
   
 <font size="6"><li>[4]  kettaskへのpngの組込み</font>
   <ol>
-  <li>1. drawdataに(q-n).pngを入れる</li>
+  <li>1. embeddataに(q-n).pngを入れる</li>
   <li>2, toolembed.cdyを立ち上げる</br>
     &emsp;&emsp;&emsp;エラー(1) HTMLに書き出す を実行</br>
     &emsp;&emsp;&emsp;エラー(2) kettaskv(q-n).を作っていない</br>
@@ -102,12 +102,18 @@ ul li::before {
   </ol>
 <font size="6"><li>[5] kettaskへのketcindyjsスクリプトの組込み</font>
   <ol>
-  <li>1. スクリプトを記述した(q-n)draw.txtをdrwdataに入れる</br>
-  &emsp;&emsp;&emsp; ・Mvpt, Rmpt, Mvdraw, Mviist, Mvplotdata, Mvdrwxyが使える</br>
-  &emsp;&emsp;&emsp; ・幾何点を使うときは1行目に //create(A,B,...)</br>
-  &emsp;&emsp;&emsp; ・//で始まり最後に // add embed がついた行は，埋め込時に追加される</br>
-  &emsp;&emsp;&emsp; ・if(ketlibflg==1,...,ketlibflg=0;)は最初に一度だけ実行される
-</li>
+  <li>1. スクリプトを記述した(q-n)draw.txtをembeddataに入れる
+    <ul>
+      <li>Mvpt, Rmpt, Mvdraw, Mviist, Mvplotdata, Mvdrwxyが使える</br>
+        &emsp;&emsp;Mvpt(1,5)　標準座標[1,5]の点の画面座標</br>
+        &emsp;&emsp;Mvlist("1",[p1,p2])　Mv(p1),Mv(pt)の線分(名前はmsg1）</br>
+        </li>
+      <li>幾何点を使うときは1行目に //create(A,B,...)</li>
+     <li> //で始まり最後に // add embed がついた行は，埋め込時に追加される</li>     
+        &emsp;&emsp;//if(nqu>0, ...,//add embed　#nqu はページ番号</br>
+     <li>if(ketlibflg==1,...,ketlibflg=0;)は最初に一度だけ実行される</li>
+  </ul>
+ </li>
   <li>2. toolembedcdyの画面でImagをクリックしてDrawに変える</li>
   <li>3. O, Sを動かして図の位置とスケールを決める</li>
   <li>4. OS保存とGoを押すと，O, Sの位置がkettaskv(q-n)os.txtに保存される</li>

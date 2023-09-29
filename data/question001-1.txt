@@ -1,17 +1,15 @@
 Q
 問いに答えよ
-[1] sin(2x)を微分せよ．
-[2] sin(2x)の0からfr(pi,2)までの定積分を求めよ．
+[1] log(x)を微分せよ．
+[2] log(x)の1からeまでの定積分を求めよ．
 Sheet
 [1]= ::5
 [2]= ::5
 Ans
-[1] 2cos(2x)
+[1] fr(1,x)
 [2] 1
 Mxcalc
-[1] sin(2x)
-[2] fr(pi,2)
-f(x):=i1
-o1:diff(f(x),x)
-o2:integrate(f(x),x,0,i2)
+[1] log(x)
+o1:diff(i1,x)
+o2:integrate(i1,x,1,%e)
 return o1::o2

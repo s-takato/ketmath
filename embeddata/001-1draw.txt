@@ -1,8 +1,6 @@
 //create(C);
-//if(nqu==1,  //add embed
 Setwindow([-2,2],[-1,1]);
 Mvplotdata("1","sin(2*x)","x",["Num=100"],["dr,1.5"]);
 Putoncurve("C","mgr1");
 Expr(Mvpt([1,1.2]),"e","y=\sin 2x",["Size=1"]);
 Mvdrwxy();
-//); //add embed

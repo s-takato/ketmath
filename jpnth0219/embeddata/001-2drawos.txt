@@ -1,5 +1,5 @@
-Center=[86.603,10.664];
+Center=[94.036,10.341];
 Scale=1;
-Rbound=[107.177,0];
+Rbound=[120.426,0];
 Putpoint("O",Center);
 Putpoint("S",Sc2pt(Scale));

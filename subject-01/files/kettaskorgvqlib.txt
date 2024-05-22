@@ -1,3 +1,4 @@
+//   240521 dot(-> dot(?)
 //   240510 ctrL, pos of key, Delete changed
 //   240407 sin(?),... added
 //   240330 Left,Right,LLeft,RRight,Delete,Allclear
@@ -485,7 +486,7 @@ sLL2=
   "(inf)"
  ],
  [
-  "dot(",":",";","(leq)","(geq)",
+  "dot(?)",":",";","(leq)","(geq)",
   ["Ll","L","{\lambda}","\mathbf{l}","{\vec{l}\;}"],
   ["Lm","M","{\mu}","\mathbf{m}","{\vec{m}\;}"],
   ["Ln","N","{\nu}","\mathbf{n}","{\vec{n}\;}"],

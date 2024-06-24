@@ -4295,7 +4295,6 @@ if(startflg==1,
   Str="";
   Strp="";
   StrL=apply(1..3,"");
-  ansL=apply(1..20,"");
   anspL=apply(1..20,"");
   TexL=apply(1..2,"");
   StrLL=[];
@@ -4469,6 +4468,7 @@ if(stoknow==2,
 if((recflg==1)&(stoknow==2),
   rec=rechead+Getcurtime()+";;";//210924
   ansL_nqu=Textedit(ch,"","");
+  str="";
   forall(1..quall,n,
     tmp=anspL_n+ansL_n; //240621
     tmp=replace(tmp,"?","");
@@ -4701,9 +4701,9 @@ var cdy = CindyJS({
   ],
   ports: [{
     width: 1074,
-    height: 634,
+    height: 626,
     id: "CSCanvas",
-    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 119.12971562453227, -37.95875504335507]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 119.12971562453227, -37.13468437755632]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

@@ -1,5 +1,5 @@
 Q
-Differentiate
+@Differentiate@
 [1] y=sin(2x)
 [2] y=fr(e^(x),x)
 Sheet
@@ -8,26 +8,14 @@ Sheet
 Ans
 [1] 2cos(2x)
 [2] fr(e^x,x)-fr(e^x,x^2)
-Mxcalc
-[1] sin(2x)
-[2] fr(e^(x),x)
-o1:diff(i1,x)
-o2:diff(i2,x)
-return o1::o2
 
 Q
-Integrate
+@Integrate@
 [1] int(0,1,x^3,dx)
 [2] int(1,e,fr(1,x),dx)
 Sheet
-[1]= ::5
-[2]= ::5
+[1]= br(?,0,1)=::5
+[2]= br(?,1.e)=::5
 Ans
 [1] 
 [2] 
-Mxcalc
-[1] x^3
-[2] fr(1,x)
-o1:integrate(i1,x,0,1)
-o2:integrate(i2,x,1,%e)
-return o1::o2

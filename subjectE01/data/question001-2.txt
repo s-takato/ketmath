@@ -4,4 +4,4 @@ Answers the questions
 Sheet
 []x=?,? ::5
 Ans
-[] (1,-2)
+[] 1,-2

@@ -1,21 +1,21 @@
 Q
 @Differentiate@
 [1] y=sin(2x)
-[2] y=e^(2x)
+[2] y=fr(e^(x),x)
 Sheet
 [1]y'= ::5
 [2]y'= ::5
 Ans
-[1]
-[2]
+[1] 2cos(2x)
+[2] fr(e^x,x)-fr(e^x,x^2)
 
 Q
 @Integrate@
 [1] int(0,1,x^3,dx)
 [2] int(1,e,fr(1,x),dx)
 Sheet
-[1]= br(?,?,?)=  ::5
-[2]= br(?,?,?)=  ::5
+[1]= br(?,0,1)=::5
+[2]= br(?,1.e)=::5
 Ans
 [1] 
 [2] 

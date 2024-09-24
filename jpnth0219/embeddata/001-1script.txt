@@ -1,2 +1,0 @@
-Center=[85.46,12.71];Scale=2.49;Rbound=[120.43,0];Tbound=[0,31.35];
-drawimage(Center,"001-1.png",scale->Scale);

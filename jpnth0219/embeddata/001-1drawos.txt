@@ -1,5 +1,0 @@
-Center=[97.052,11.633];
-Scale=1;
-Rbound=[120.426,0];
-Putpoint("O",Center);
-Putpoint("S",Sc2pt(Scale));

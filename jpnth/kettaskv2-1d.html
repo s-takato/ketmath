@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     
-    <title>kettaskth2-1</title>
+    <title>kettask2-1</title>
     <style type="text/css">
         * {
             margin: 0px;
@@ -3129,8 +3129,8 @@ Lettermove(dir,str):=(
 Ketcindyjsfigure=0;
 Ketcindyjsscale=1;
 aalinestart=1;
-quline="Q01::三角形ABCの内接円の半径r_0=1,tan(tfr(B,2))=m，//傍接円の共通接線が作る三角形をDEFとする	[1]::m=0.5のとき，傍接円の半径r_1,r_2,r_3の和はいくらか	[2]::DEFの内接円の半径Rはいくらか	[3]::m=0.75のとき，S=r_0+r_1+r_2+r_3はいくらか	[4]::また，Rはいくらか．	[5]::MNR法の結果を用いてSを計算せよ	[6]::SとRの関係を述べよ";
-shline="Q01---	[1]r_1+r_2+r_3= 	[2]R= 	[3]S= 	[4]R= 	[5]S= 	[6]  ";
+quline="Q01::三角形ABCの内接円の半径r_0=1,tan(tfr(B,2))=m，//傍接円(半径r_1,r_2,r_3)の共通接線が作る三角形をDEFとする	[1]::m=0.5のとき，和S=r_0+r_1+r_2+r_3はいくらか	[2]::DEFの内接円の半径Rはいくらか	[3]::m=0.75のとき，S=r_0+r_1+r_2+r_3はいくらか	[4]::また，Rはいくらか．	[5]::SとRの関係はどうなりそうか．	[6]::MNR法の結果を用いて[5]を確かめよ．";
+shline="Q01---	[1]S=r_0+r_1+r_2+r_3= 	[2]R= 	[3]S= 	[4]R= 	[5] 	[6]S=  ";
 sqline="01AA	2	2	2	2	2	2	2CR02BB	2	2	2	2	2	2	2CR03CC	2	2	2	2	2	2	2CR04DD	2	2	2	2	2	2	2CR05EE	2	2	2	2	2	2	2CR06FF	2	2	2	2	2	2	2CR07GG	2	2	2	2	2	2	2CR08HH	2	2	2	2	2	2	2CR09II	2	2	2	2	2	2	2CR10JJ	2	2	2	2	2	2	2";
 quLL=Line2list(quline);
 shL=Line2list(shline);
@@ -4710,9 +4710,9 @@ if((recflg==1)&(stoknow==2),
   recflg=0;
 );
 
-Center=[91.451,12.71];
+Center=[91.558,11.202];
 Scale=1;
-Rbound=[114.61,0];
+Rbound=[114.286,0];
 tmp1=screenbounds();tmp1=[tmp1_2_1,0];
 Center=Center-Rbound+tmp1;
 //create(M);
@@ -4750,7 +4750,7 @@ Letter(Mvpt(Cb),"c","2");
 Letter(Mvpt(Cc),"c","3");
 Letter(M.xy+[0,2],"c","m="+format(m,2));
 
-if(nqu<6, //add embed
+if(nqu<7, //add embed
 op=["Size=1.5"];
 Expr([90,0],"e","r_0="+format(r,2),op);
 Expr([90,-2],"e","r_1="+format(Ra,2),op);
@@ -4760,7 +4760,7 @@ op=append(op,"Color=red");
 Expr([90,-10],"e","R="+format(abs(Rs),2),op);
 ); //add embed
 
-if(nqu==6, //add embed
+if(nqu==7, //add embed
  rr="r=1";
  Ra=Totexform("r_1=fr(1,mn)");
  Rb=Totexform("r_2=fr(n+m,m(1-m*n))");
@@ -4790,7 +4790,7 @@ var cdy = CindyJS({
   },
   angleUnit: "°",
   geometry: [
-    {name: "M", type: "Free", pos: [4.0, -1.0845439562328592, 0.04338175824931436], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "M", type: "Free", pos: [4.0, -1.0695502609853984, 0.042782010439415936], color: [1.0, 0.0, 0.0]},
     {name: "Text1", type: "EditableText", pos: [4.0, 3.9148936170212765, 0.1702127659574468], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 1.0, minwidth: 500, textsize: 24.0},
     {name: "NE", type: "Free", pos: [4.0, 1.0067746650167269, 0.05318084682256492], color: [1.0,1.0,1.0], labeled: false, size: 2.0, border:false },
     {name: "Text2", type: "EditableText", pos: [4.0, -0.8516129032258064, 0.25806451612903225], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 1.0, minwidth: 580, textsize: 24.0},
@@ -4929,7 +4929,7 @@ var cdy = CindyJS({
 </head>
 <body>
 <header><p><font size="6">
-KeTTaskth2-1
+KeTTask2-1
 </font></p></header>
     <div id="CSCanvas"></div>
 <div style="padding: 50px">

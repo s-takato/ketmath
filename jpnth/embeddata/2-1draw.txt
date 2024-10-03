@@ -33,7 +33,7 @@ Letter(Mvpt(Cb),"c","2");
 Letter(Mvpt(Cc),"c","3");
 Letter(M.xy+[0,2],"c","m="+format(m,2));
 
-//if(nqu<6, //add embed
+//if(nqu<7, //add embed
 op=["Size=1.5"];
 Expr([90,0],"e","r_0="+format(r,2),op);
 Expr([90,-2],"e","r_1="+format(Ra,2),op);
@@ -43,7 +43,7 @@ op=append(op,"Color=red");
 Expr([90,-10],"e","R="+format(abs(Rs),2),op);
 //); //add embed
 
-//if(nqu==6, //add embed
+//if(nqu==7, //add embed
  rr="r=1";
  Ra=Totexform("r_1=fr(1,mn)");
  Rb=Totexform("r_2=fr(n+m,m(1-m*n))");

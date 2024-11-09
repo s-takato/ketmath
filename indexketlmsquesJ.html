@@ -21,11 +21,12 @@ ul li::before {
 <body>  
 <div style="padding: 50px">  
 <p><font size="10">&emsp;KeT-LMSの課題ファイル</font>  
-<font size="6">&emsp;&emsp;&emsp;&emsp;2024-03-30</font></p> 
-<font size="5">
+<font size="6">&emsp;&emsp;&emsp;&emsp;2024-11-08</font></p> 
+
 <ol>
 <font size="6"><li>1. 名前　question識別記号-最初の大問番号.txt</li></font>
-  <ul>
+<font size="5">
+    <ul>
     <li>識別記号　例えば 月日</li>
     <li>最初の大問番号をつける</li>
     <li>複数の大問を入れることができる</br>
@@ -36,26 +37,30 @@ ul li::before {
 　&emsp;&emsp;(question0615-1には2つの大問が含まれる)
     </li>
   </ul>
+</font>
 <font size="6"><li>2. 課題ファイルの書式</li></font>
-  <ul>
+<font size="5">
+    <ul>
     <li>Q&emsp;&emsp;<font color="red">番号はファイル名から自動的に追加</font></li>
-    <li>(大問文)&emsp;&emsp;<font color="red">2行になるときは // で区切る</font></li>
+    <li>(大問文)&emsp;&emsp;<font color="red">2行になるときは // で区切る(小問，解答も同様)</font></li>
     <li>[1] (小問)&emsp;&emsp;<font color="red">ないときも [] とする</font></li>
     <li>[2] &emsp;&emsp;<font color="red">小問の数だけ</font></li>
           <li>Sheet &emsp;&emsp;<font color="red">解答欄</font></li>
-          <li>[1] &emsp;&emsp;<font color="red">:: の後に配点(とMaxima不採点のとき ::-1 を追加)</font></br>
-    &emsp;&emsp;&emsp;・?によって入力ポイントを指定できる　例 P=[?,]
-</li>
+          <li>[1] &emsp;<font color="red">:: の後に配点(とMaxima不採点のとき ::-1 を追加)</font></br>
+          &emsp;&emsp;&emsp;&emsp;<font color="red">・?によって入力ポイントを指定できる　例 P=[?,?]</font>
+  </li>
     <li>[2]</li>
           <li>Ans &emsp;<font color="red">正解</font></li>
     <li>[1]</li>
     <li>[2]</li>
     <li><font color="red">空白行をおいて次の問題を書く</font></li>
-    <li>(注)::で区切った問題を学生ごとに乱数で割り当てることもできる</li>
+    <li>(注)::で区切った問題を学生ごとに乱数で割り当てることもできる<font color="red">(工事中)</font></li>
     <li>(注)toolkettips.cdyのQuefileで雛形を作ることができる</li>
-  </ul></font>
+  </ul>
+</font>
 <font size="6"><li>3. 課題の作成例</li></font>
-  <ul>
+<font size="4">
+    <ul>
     <li>Q</li>
     <li>問いに答えよ</li>
     <li>[1] sin(2x)の導関数の定義式をかけ</li>
@@ -67,7 +72,10 @@ ul li::before {
     <li>[1] lim(z,x,fr(sin(z)-sin(x),z-x))</li>
     <li>[2] 1</li>
   </ul>
-<font size="6"><li>4. Maximaによる正解の出力</li></font>
+</font>
+<font size="6"><li>4. Maximaによる正解の出力<font color="red">(工事中)</font>
+</li>
+<font size="5">
   <li>&emsp;(I) Ansの直後に次のように書く</li>
   <ul>
     <li>Mxcalc</li>
@@ -84,6 +92,7 @@ ul li::before {
     <li>同時にdataにmxans(識別記号-問題番号).txtというファイルができる</li>
     <li>出力結果は　[2*cos(2*x),1]</li>
   </ul>
+</font>
 </ol>
 </body>  
 </html>  

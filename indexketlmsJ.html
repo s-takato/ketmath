@@ -21,7 +21,7 @@ ul li::before {
 <body>  
 <div style="padding: 50px">  
 <p><font size="10">&emsp;KeT-LMSの使い方</font>  
-<font size="6">&emsp;&emsp;&emsp;&emsp;2024-05-06</font></p> 
+<font size="6">&emsp;&emsp;&emsp;&emsp;2024-11-08</font></p> 
 <!--<div style="text-align: center">
 <img class="size2" src="ketmathscreen.png" alt="KeTMath画面">
 </div>-->
@@ -29,14 +29,14 @@ ul li::before {
 <ol>
 <font size="6"><li>準備</font>
   <ol>
-    <li>(1) ketcindyを最新版(4.4.xx)に更新する</li>
+    <li>(1) ketcindyを最新版(4.5.xx)に更新する</li>
     <li>(1) <a href="https://github.com/s-takato/ketmath">ket-lms</a>をダウンロード
       <ul>
       <li>右下にあるReleases/Latestバージョンをクリック</li>
       <li>ダウンロードしたzipを解凍</li>
-      <li>適当なフォルダに移動．名称は任意(例えば subject-01)</li>
+      <li>subject01を適当なフォルダに移動(名称を適宜変更)</li>
       <li>dataにstudent(y).txtとquestion(q-n).txtを入れる</br>
-      &emsp;&emsp;yは年度など，q-nは問題記号-番号</li>
+      &emsp;&emsp;yは年度など，q-nは問題記号(日付など)-問題番号</li>
      </ul>
     </li>
 <!--
@@ -53,13 +53,13 @@ ul li::before {
   <ol>
   <li>&emsp;&emsp;<a href="indexketlmsquesJ.html">KeT-LMSの課題ファイル</a>を参照</li>
   </ol>
-<font size="6"><li>[2] Maximaによる正解のチェック</font>
+<font size="6"><li>[2] Maximaによる正解のチェック<font color="blue">(オプション)</font>
   <ol>
   <li>(1) toolkemath.cdyを立ち上げる</li>
   <li>(2)「Mxansを作成」を選ぶ
     <ol>
     <li>&emsp;・2回押せば，強制実行</li>
-    <li>&emsp;・<font color="red">ファイルを選べば（赤字になる）それだけが実行（以下同じ）</font></li>
+    <li>&emsp;・<font color="red">ファイルを選べば（赤字になる）それだけが実行</font></li>
     <li>(i) 結果が表示され，dataの中にmxans(q-n).txtができる</li>
     <li>(ii) 確認してからリセットを押す</li>
    </ol>
@@ -69,22 +69,44 @@ ul li::before {
   <li>(1) toolkemath.cdyを立ち上げる</li>
   <li>(2)「1.tasklineを作成」を押す</li>
     <ol>
-    <li>&emsp;・1taskline(q-n)と2anssheet(q-n)ができる</li>
-    <li>&emsp;・1taskline(q-n)と2anssheet(q-n)ができる</li>
+    <li>&emsp;・dataに1taskline(q-n).txtと2anssheet(q-n).txtができる</li>
     </ol>
-  <li>(1) 2.kettaskに組込 を押す </li>
+  <li>(1)「2.kettaskに組込」を押す </li>
     <ol>
     <li>(1) orgvかorgvnr(ketmathルール表なし)を選ぶ</li>
     <li>(2) 実行するとkettask(q-n).htmlができる</li>
     <li>(3) urlを学生に配付</li>
     </ol>
-  <li>注)「総括ファイル作成」を実行しておくと問題の確認に便利</br>
+  <li>注)「8.総括ファイル作成」を実行しておくと問題の確認に便利</br>
     &emsp;&emsp;&emsp;sumqueall(q-n).txt（問題データすべて）</br>
     &emsp;&emsp;&emsp;sumqueque(q-n).txt（問のみ）</br>
-    &emsp;&emsp;&emsp;sumtable(q-n).csv（一覧表．ここでは無意味） 
+    &emsp;&emsp;&emsp;sumtable(q-n).csv（採点終了後では一覧表ができる） 
   </ol> 
-  
-<font size="6"><li>[4]  kettaskへのpngの組込み</font>
+<font size="6"><li>[4] kettaskへのketcindyjsスクリプトの埋め込み</font>
+  <ol>
+  <li>(1) スクリプトを記述した(q-n)draw.txtをembeddataに入れる</br>
+    <ul>
+     <li>Mvpt,Rmpt : 論理座標と物理座標の変換</li>
+     <li>Mvdraw : 論理データを物理座標に変換して表示</li>
+        &emsp;&emsp; Paramplot("1",..,["nodisp"]);</br>
+        &emsp;&emsp; Mvdraw("gp1",["dr,1.5"]);</br>
+     <li>Mvlist,Mvplotdata,Mvcircledata,Mvdrwxyは論理座標を変換</li>
+        &emsp;&emsp;  Mvcircle("1",[[0,0],2],["Color=Red"]);</br>
+     <li>幾何点やテキストを使ったときは，Embedの直前に「HTMLに書き出す」</li>
+     <li>//で始まり最後に // add embed がついた行は，埋め込時に追加される</li>
+        &emsp;&emsp; nquは問番号(1は大問)</br>
+     <li>if(ketlibflg==1,...,ketlibflg=0;)は最初だけ実行されるコマンドを書く</li>
+     </ul>
+</li>
+  <li>(2) toolembed.cdyの画面左上のボタンをDrawにする</li>
+  <li>(3) <<, <, >, >> を押すと図ファイルを変更できる</li>
+  <li>(4) O(原点), S(スケール)を動かして図の位置とスケールを決める</li>
+  <li>(5) OS保存とGoを押すと，O, Sの位置が(q-n)drawos.txtに保存される</li>
+  <li>(6) EmbedとGoを押すとkettaskv(q-n)d.htmlに埋め込まれる</li>
+  <li>(7) AddボタンをRepに変えると，最後のファイルが置き換えられる</li>
+  </ol>
+
+<font size="6"><li>[5]  kettaskへのpngの組込み</font>
   <ol>
   <li>(1) drawdataに(q-n).pngを入れる</li>
   <li>(2) toolembed.cdyを立ち上げる</br>
@@ -92,32 +114,16 @@ ul li::before {
     &emsp;&emsp;&emsp;エラー(2) kettaskv(q-n).を作っていない</br>
     &emsp;&emsp;&emsp;エラーを修正したらResetを押す </li>
   <li>(3) メディアブラウザに(q-n).pngを登録する</li>
-  <li>(4) 上の左ボタンが Imagであることを確かめる</br>
-   &emsp;&emsp;&emsp;注）クリックするとDrawに変わる</li>
+  <li>(4) 上の左ボタンが Imagに変える</li>
   <li>5. ステップを3回押す</br>
     <ol>
     <li>&emsp;(1) (q-n).pngファイルから (q-n)png.txtを作成</li>
     <li>&emsp;(2) 図を表示</br>
     &emsp;&emsp;&emsp;・T3,Sを動かして中心位置とスケールを決める</br>
     &emsp;&emsp;&emsp;・Goを押すと，(q-n)script.txtを作成</li>
-    <li>&emsp;(3) embed>htmlにしてGoを押すと同名のkettaskvに組込み(imが付く)</li>
-    <li>&emsp;(注）<<, <, >, >> を押すと図ファイルを変更できる</li>
+    <li>&emsp;(3) EmbedとGoを押すとkettaskv(q-n)i.htmlに埋め込まれる</li>
     </ol>
   </ol>
-<font size="6"><li>[5] kettaskへのketcindyjsスクリプトの組込み</font>
-  <ol>
-  <li>(1) スクリプトを記述した(q-n)draw.txtをdrwdataに入れる</br>
-  &emsp;&emsp;&emsp; ・Mvpt, Rmpt, Mvdraw, Mviist, Mvplotdata, Mvdrwxyが使える</br>
-  &emsp;&emsp;&emsp; ・幾何点を使うときは1行目に //create(A,B,...)</br>
-  &emsp;&emsp;&emsp; ・//で始まり最後に // add embed がついた行は，埋め込時に追加される</br>
-  &emsp;&emsp;&emsp; ・if(ketlibflg==1,...,ketlibflg=0;)は最初に一度だけ実行される
-</li>
-  <li>(2) toolembedcdyの画面でImagをクリックしてDrawに変える</li>
-  <li>(3) O, Sを動かして図の位置とスケールを決める</li>
-  <li>(4) OS保存とGoを押すと，O, Sの位置がkettaskv(q-n)os.txtに保存される</li>
-  <li>(5) EmbedとGoを押してkettaskv(drが付く)に組込む</li>
-  </ol>
-  
 <font size="6"><li>[6] 回収データの処理</font>
   <ol>
   <li>(1) 回収した答案データをdata/anssheetallにコピーする</li>
@@ -129,7 +135,8 @@ ul li::before {
  &emsp;&emsp;&emsp;&emsp;&emsp;・式のコンマは : に変換される</br>
  &emsp;&emsp;&emsp;&emsp;&emsp;・各番号の右の欄に手作業で得点を入れてもよい</li>
   </ol>
-<font size="6"><li>[7] Maximaによる採点</font>
+  
+<font size="6"><li>[7] Maximaによる採点<font color="red">(工事中)</font></font>
   <ol>
 <!--  <li>4. ketscore組込 を選び，実行する</br>
 &emsp;&emsp;&emsp;・ketscorev(q-n).htmlができる</br>
@@ -153,7 +160,7 @@ ul li::before {
   </li>
   <li>9. scoresheet分割 を押すと，問題別の4scoresheet(q-n).txtができる</li>
   </ol>
-<font size="6"><li>[7] 返却と集計</font>
+<font size="6"><li>[8] 返却と集計</font>
   <ol>
   <li>1. 8と9のボタンで学生ごとの成績票を作成する</li>
   <li>2. 11を押すと，Dropboxの学生ごとのフォルダにコピーされる</li>

@@ -3,10 +3,10 @@
 <head>  
 <meta charset="utf-8">  
 <title>KeT-LMS</title>  
-<script src="ketcindyjs/jquery.min.js"></script>  
-<link rel="stylesheet" href="ketcindyjs/katex/katex11.min.css" />  
-<script src="ketcindyjs/katex/katex11.min.js"></script>  
-<script src="ketcindyjs/auto-render11.min.js"></script>  
+<script src="subject01/ketcindyjs/jquery.min.js"></script>  
+<link rel="stylesheet" href="subject01/ketcindyjs/katex/katex11.min.css" />  
+<script src="subject01/ketcindyjs/katex/katex11.min.js"></script>  
+<script src="subject01/ketcindyjs/auto-render11.min.js"></script>  
 <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "[[", right: "]]", display: true},{left: "$", right: "$", display: false}]})});</script>  
 <style type="text/css">
 .size2  {width:400px; height:300px; }
@@ -20,7 +20,7 @@ img.toppos { vertical-align: texttop; }
 <body>  
 <div style="padding: 50px">  
 <p><font size="10">&emsp;KeTLMSの解答方法</font>  
-<font size="6">&emsp;&emsp;&emsp;&emsp;2024-11-09</font></p> 
+<font size="6">&emsp;&emsp;&emsp;&emsp;2024-11-10</font></p> 
 
 <ol>
 <li><font size="6"><li>1. 番号入力</font></li>
@@ -34,20 +34,41 @@ img.toppos { vertical-align: texttop; }
         <td valign="top">
           <font size="5"
         　<ol>
-          <li>1. St= の欄に番号を入れてOK(緑)を押す</li>
-          <li>2. IDが表示されるので確認してもう一度OK(緑)</br>
-          &emsp;&emsp;・やり直す場合はRset</li>
-          <li>3. 最初のページ(大問)が表示される</br>
-          &emsp;&emsp;・このページには入力できない</br>
-          &emsp;&emsp;&emsp;&emsp; ーーー は入力できないことを示す</li>
-          <li>4. 次を押すと最初の問題[1]が現れる</li>
+          <li>1. St= の欄に番号を入れて$\fcolorbox{black}{lime}{OK}$(緑)を押す</li>
+          <li>2. IDが表示される</br>
+          <p>&emsp;&emsp;&emsp;St=1 $\xrightarrow{\fcolorbox{black}{lime}{OK}}$ St=01AA</p></li>
+          <li>3. 確認してもう一度$\fcolorbox{black}{lime}{OK}$を押す</br>
+          &emsp;&emsp;・やり直す場合は$\fcolorbox{black}{red}{Rset}$</li>
+          <li>4. 最初のページ(大問)が表示される</li>
           </ol>
           </font>
         </td>
     </tr>
 </table>
 
-<li><font size="6">2. 解答の入力1</font></li>
+<li><font size="6"><li>2. 大問ページ(Pg=1)</font></li>
+
+<table>
+    <tr>
+        <td>
+        &emsp;<img src="png/ketlmsans3.png" width="500" class="toppos">
+        </td valign="top">
+		<td>&nbsp;</td>
+        <td valign="top">
+          <font size="5"
+        　<ol>
+           <li>1. $\fcolorbox{black}{lime}{1}$が問題，$\fcolorbox{black}{lime}{2}$が解答入力</li>
+           <li>2. いずれも表示スペースに数式として表示される</li>
+           <li>3. このページでは解答入力はできない</br>
+          &emsp;&emsp;&emsp; －－－ は，入力できないことを示す</li>
+          <li>4. $\fcolorbox{black}{#d3ffa8}{次}$を押すと最初の問題[1]が現れる</li>
+          </ol>
+          </font>
+        </td>
+    </tr>
+</table>
+		
+<li><font size="6">3. 解答の入力1</font></li>
 <table>
     <tr>
         <td>
@@ -57,20 +78,25 @@ img.toppos { vertical-align: texttop; }
         <td valign="top">
           <font size="5"
         　<ol>
-          <li>5. キーボードから数式を入れる</br>
-          <li>6. ？がないときは最後に追加される</li>
-          <li>7. ?があると最初の？の直前に入力される</li>
-          <li>8. ?は右にずれて次の入力を待つ状態になる</li>
-          <li>9. 最後にOK(水色)を押すと，？が消えて解答が完成する</br>
-          &emsp;&emsp;2x^2+3x-2=(x+2)(2x-1)</li>
-          <li>10. 次ボタンを押すと次の問[2]が表示される</li>
+          <li>1. キーボードから数式や記号を入れる</br>
+          &emsp;&emsp;&emsp;2x^2+3x-2=?$\xrightarrow{\fcolorbox{black}{yellow}{\ (\ }}$2x^2+3x-2=(? 
+          </li>
+          <li>2. ?がないときは最後に追加される</li>
+          <li>3. ?があるときは最初の?の直前に入力される</br>
+          &emsp;&emsp;&emsp;?は右にずれて，次の入力を待つ状態になる</li>
+          <li>4. 入力を続ける</li>
+          <li>5. $\fcolorbox{black}{#adffff}{$\leftarrow$}$を押すと，?が左に移動</li>
+          <li>6. $\fcolorbox{black}{#adffff}{OK}$を押すと，?が消えて解答完成</br>
+          &emsp;&emsp;&emsp;$\longrightarrow$2x^2+3x-2=(x+2)(2x-1)</li>
+          <li>7. $\fcolorbox{black}{#d3ffa8}{次}$(薄緑)を押すと次の問[2]が表示</li>
+          <li>8. $\fcolorbox{black}{#d3ffa8}{戻}$(薄緑)を押すと前の問[1]の解答表示</li>
           </ol>
           </font>
         </td>
     </tr>
 <table>    
 
-<li><font size="6">3. 解答の入力2</font></li>
+<li><font size="6">4. 解答の入力2</font></li>
 <table>
     <tr>
         <td>
@@ -80,9 +106,11 @@ img.toppos { vertical-align: texttop; }
         <td valign="top">
           <font size="5"
         　<ol>
-          <li>11. 複数の？があるときは，最初の方が入力位置</li>
-          <li>12. ?を右に動かしたいときは，右矢(水色)を押す</li>
-          <li>13. そのとき，??は単独の?に変換される</li>
+          <li>1. 複数の?があるときは，最初の方が入力位置を示す</br>
+          <p>&emsp;&emsp;&emsp;?,? $\xrightarrow{\fcolorbox{black}{yellow}{--\vphantom{2}}}$-?,?$\xrightarrow{\fcolorbox{black}{yellow}{2}}$-2?,?</p></li>
+          <li>2. $\fcolorbox{black}{#adffff}{DL}$(水色)を押すと1文字消去される</li>
+          <li>3. ?を右に動かすときは，$\fcolorbox{black}{#adffff}{$\rightarrow$}$(水色)を押す</br>
+          &emsp;&emsp;&emsp;そのとき，??は単独の?に変換される</li>
           </ol>
           </font>
         </td>
@@ -91,7 +119,7 @@ img.toppos { vertical-align: texttop; }
 
 
 
-<li><font size="6">4. 解答の入力3</font></li>
+<li><font size="6">5. 解答の入力3</font></li>
 <table>
     <tr>
         <td>
@@ -101,16 +129,18 @@ img.toppos { vertical-align: texttop; }
         <td valign="top">
           <font size="5"
         　<ol>
-          <li>14. frなどの関数を入れたときはfr(?,)が入力される</li>
-          <li>15. 右矢を用いて，?のあるところに順に数式を入力する</li>
-          <li>16. 最後にOKを押す</li>
+          <li>1. $\fcolorbox{black}{yellow}{fr}$(分数)などを入れたときは?の前にfr(?,)が入力</br>
+          <p>&emsp;&emsp;&emsp;x=-2,? $\xrightarrow{\fcolorbox{black}{yellow}{fr}}$x=-2,fr(?,?)?</p></li>
+          <li>2. $\fcolorbox{black}{#adffff}{$\rightarrow$}$を用いて，?に順に数式を入力</br>
+          <p>&emsp;$\xrightarrow{\fcolorbox{black}{yellow}{1}}$x=-2,fr(1?,?)?$\xrightarrow{\fcolorbox{black}{#adffff}{$\rightarrow$}}$x=-2,fr(1,?)?$\xrightarrow{\fcolorbox{black}{yellow}{2},\fcolorbox{black}{#adffff}{$\rightarrow$}}$x=-2,fr(1,2)?</p></li>
+          <li>3. 最後にOKを押す</li>
           </ol>
           </font>
         </td>
     </tr>
 <table>   
 
-<li><font size="6">5. 解答の提出</font></li>
+<li><font size="6">6. 解答の提出</font></li>
 <table>
     <tr>
         <td>
@@ -120,15 +150,70 @@ img.toppos { vertical-align: texttop; }
         <td valign="top">
           <font size="5"
         　<ol>
-          <li>17. 全部の解答が終わったらRecボタンを押す</br>
+          <li>1. 全部の解答が終わったら$\fbox{Rec}$ボタンを押す</br>
           &emsp;&emsp;&emsp;最下段のボックスにデータが入る</li>
-          <li>18. 全てを選択してコピーする．
-          <li>19. プラットフォームの提出欄にペーストして送信する</li>
+          <li>2. 全てを選択してコピーする
+          <li>3. プラットフォームの提出欄にペーストして送信する</li>
           </ol>
           </font>
         </td>
     </tr>
-<table>   
+</table>   
+
+<li><font size="6">A1. 改行の利用</font></li>
+<table>
+    <tr>
+        <td>
+        &emsp;<img src="png/ketlmsansa1.png" width="500">
+        </td>
+		<td>&nbsp;</td>
+        <td valign="top">
+          <font size="5"
+        　<ol>
+          <li>1. $\fcolorbox{black}{yellow}{\raisebox{2pt}{\footnotesize$/$}}$を2回押し，//を入れると改行して表示される</li>
+          <li>2. 黒色の点$\bullet$を動かすと表示場所を自由に変えられる
+          <li>3. 橙色の点$\color{orange}\bullet$は間隔を変えるのに用いられる</li>
+          </ol>
+          </font>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+        &emsp;<img src="png/ketlmsansa2.png" width="500">
+        </td>
+		<td>&nbsp;</td>
+        <td valign="top">
+          <font size="5"
+        　<ol>
+          <li>1. 問題文でも同様</li>
+          </ol>
+          </font>
+        </td>
+    </tr>
+</table>
+
+<li><font size="6">A2. 問題文でのPS(push),PL(pull)の利用</font></li>
+<table>
+    <tr>
+        <td>
+        &emsp;<img src="png/ketlmsansa3.png" width="500">
+        </td>
+		<td>&nbsp;</td>
+        <td valign="top">
+          <font size="5"
+        　<ol>
+          <li>1. $\fcolorbox{black}{pink}{PS}$を押すと行頭から//までがバッファに格納される</li>
+          <li>2. 表示スペースにはすべてが表示される</li>
+          <li>3. $\fcolorbox{black}{pink}{PL}$を押すとバッファに格納された最後の文を解答欄に戻す</li>
+          <li>4. $\fbox{Rec}$を押すとバッファと表示のすべてが欄に表示される</li>
+          </ol>
+          </font>
+        </td>
+    </tr>
+</table>
 
 </ol>
 

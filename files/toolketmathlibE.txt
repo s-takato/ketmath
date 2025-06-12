@@ -2407,8 +2407,7 @@ Tabledo():=(
   tmp=["sumqueall","sumqueque","sumtable"];
   Putcol("",1,"l2",tmp,["Color=blue"]);
   if(allflg==1,
-    Quesdata();
-    Maketable();
+    file=Maketable();
     dispL=append(dispL,["Table generated",clrb]);
     tableflg=0;
     allflg=0;

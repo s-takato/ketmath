@@ -4141,18 +4141,29 @@ Left():=(
 );
 
 Right():=(
-  regional(tmp,tmp1,tmp2,tmp3);
+  regional(tmp,tmp1,tmp2,tmp3,tmp4);
   if(length(Str)>0,
     StrLL=append(StrLL,Str);
     tmp=indexof(Str,"?");
     if(tmp>0,
       if(tmp<length(Str)-1,
         tmp1=substring(Str,0,tmp-1);
-        tmp2=substring(Str,tmp,tmp+1)+"?";
-        tmp3=substring(Str,tmp+1,length(Str));
-        Str=tmp1+tmp2+tmp3;
-        Str=replace(Str,"??","?"); //240725
-        npos=length(tmp1+"?");
+        tmp4=substring(Str,tmp,length(Str));//250601
+        if(indexof(tmp4,"?")==0,//250601
+          tmp2=substring(Str,tmp,tmp+1)+"?";
+          tmp3=substring(Str,tmp+1,length(Str));
+          Str=tmp1+tmp2+tmp3;
+          Str=replace(Str,"??","?"); //240725
+          npos=length(tmp1+"?");
+        , 
+          tmp=indexof(tmp4,"?");
+          tmp2=substring(tmp4,0,length(tmp4));
+          tmp1=tmp1+tmp2;          
+          Str=tmp1+substring(tmp4,0,length(tmp4));
+          tmp3=substring(tmp4,tmp+1,length(tmp4));
+          Str=tmp1+tmp3;
+          npos=indexof(Str,"?");
+        );
       );
       if(tmp==length(Str)-1,
         tmp1=substring(Str,0,tmp-1);
@@ -4308,6 +4319,7 @@ if(startflg==1,
   Subsedit(9,"");
   pghead="";
   stok=1;
+  tanim=0;//250607
   startflg=0;
 );
 
@@ -4362,6 +4374,10 @@ Keytable(1,50,1,33,tmp,[1,0,0],[["Rset"]],[0,-0.5],21);
 tmp=Text113.xy+[6.9,-1];
 Keytable(1,48.5,4,33,tmp,[1,1.5*0.5,1.5*0.3],
    [["Play"],["Pau"],["Rev"],["Stop"]],[0,-0.5],21);
+pgpos=[Op(1,Text4.xy)+4.3,1];//250522
+drawtext(pgpos,"Pg=",size->20);//250522
+
+if(tanim==0,/////250607
 
 if(stok<=1,
   tmp="St=";
@@ -4561,6 +4577,8 @@ if((recflg==1)&(stoknow==2),
   recflg=0;
 );
 
+);//end tanim
+
 Windispg();
 
 ;
@@ -4703,10 +4721,10 @@ var cdy = CindyJS({
     {name: "Text374", type: "Button", pos: [4.0, -1.7183098591549293, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "stopanimation();Animeflg=\"\";sstart=Current;", text: "　  　", textsize: 14.0}
   ],
   ports: [{
-    width: 1083,
-    height: 635,
+    width: 1085,
+    height: 629,
     id: "CSCanvas",
-    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 120.05679512355586, -38.06176387657992]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 120.26281279000555, -37.44371087723085]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

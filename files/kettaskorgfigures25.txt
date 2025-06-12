@@ -1,3 +1,4 @@
+//20250607 tanim
 //20240627 funflg (ansL,anspL)
 //20240621
 //20230417
@@ -38,6 +39,7 @@ if(startflg==1,
   pghead="";
 //  pgpos=[41.82,1.1];
   stok=1;
+  tanim=0;//250607
   startflg=0;
 );
 
@@ -98,6 +100,10 @@ Keytable(1,50,1,33,tmp,[1,0,0],[["Rset"]],[0,-0.5],21);
 tmp=Text113.xy+[6.9,-1];
 Keytable(1,48.5,4,33,tmp,[1,1.5*0.5,1.5*0.3],
    [["Play"],["Pau"],["Rev"],["Stop"]],[0,-0.5],21);
+pgpos=[Op(1,Text4.xy)+4.3,1];//250522
+drawtext(pgpos,"Pg=",size->20);//250522
+
+if(tanim==0,/////250607
 
 if(stok<=1,
   tmp="St=";
@@ -298,5 +304,7 @@ if((recflg==1)&(stoknow==2),
   StrL_4=rec;
   recflg=0;
 );
+
+);//end tanim
 
 Windispg();

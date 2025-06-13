@@ -1,3 +1,4 @@
+//250613 Startketmath year =>year(,classname)
 //250429 tootlketmathlib folder created. functions of figures added.
 //241004 Maketable changed(debugged)
 //240530 Anschart(scoreline) changed
@@ -1859,14 +1860,15 @@ Scorewithmaxima(fname):=(
 );
 
 /////// figures
-
-Startketmath(year):=(
+Startketmath(year):=Startketmath(year,""); //250613[2Lines]
+Startketmath(year,classname):=(
   regional(tmp,ddata,tmp1);
   Addax(0);
   Setwindow([-11.5,24.5],[-13,6]);
-  Year=year;
+  Year=year;//250613[2Lines]
+  Classname=classname;
   Text1.text=Year; //230820
-  Dirdist=Gethome()+"/Dropbox/2025polytech";
+  Dirdist=Gethome()+"/Dropbox/"+Year+class;//250613
   ddata=Datalist_Numdata;
   Text15.text=ddata;
   Dirdata=Dircdy+ddata;
@@ -1955,7 +1957,6 @@ Tasklinedo():=(
       );
       dispL=append(dispL,
            ["generate tasklines",clrb]);
-           println([82,dispL]);
       reset=0;
       tasklineflg=0;
       stquelineflg=0;
@@ -2422,10 +2423,10 @@ Tabledo():=(
 Copycombinedo():=(
   Resetflg(["copycombine","all"]);
   Resetsetting();
-  tmp=indexof(Dirdist,"Dropbox");
-  tmp=tmp+length("Dropbox");
-  tmp=substring(Dirdist,tmp,length(Dirdist));
-  tmp1=[tmp,"  OK","  Modify"];
+//  tmp=indexof(Dirdist,"Dropbox");
+//  tmp=tmp+length("Dropbox");
+//  tmp=substring(Dirdist,tmp,length(Dirdist));//250613[2Lines]
+  tmp1=[Year+Classname,"  OK","  Modify"];
   mouse().xy=[-1,0];
   mp=mouse().xy;
   res=Selectfile(tmp1,[1]);

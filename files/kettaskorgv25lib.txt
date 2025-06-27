@@ -614,7 +614,6 @@ tmp=Op(1,Text34.xy)+1.5;
 Settextkey(4,[tmp,0.95],tmp1,"nqinc=1;",13);
 Settextkey(5,[tmp+4.6*3,0.95],tmp1,"nqinc=-1;",13);
 //240423to
-
 Text1.xy=[poskey_1+4,posyL_1];
 Text2.xy=[poskey_1-4,posyL_2];
 Text9.xy=[poskey_1-4,posyL_3];
@@ -625,3 +624,4 @@ tmp1=Text3.xy;
 tmp2=Text68.xy;
 Text19.xy=[tmp1_1+2.15-2,tmp2_2-0.2];//+[8,-3.3-0.3];
 //no ketjs off
+

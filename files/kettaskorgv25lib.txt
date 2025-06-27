@@ -1,3 +1,4 @@
+//   250627 Right  dbg(?)
 //   250601 Right   (directly move to the next ?)
 //   240821 Right   (not remove ?)
 //   240521 dot(-> dot(?)
@@ -378,9 +379,8 @@ Right():=(
           tmp=indexof(tmp4,"?");
           tmp2=substring(tmp4,0,length(tmp4));
           tmp1=tmp1+tmp2;          
-          Str=tmp1+substring(tmp4,0,length(tmp4));
-          tmp3=substring(tmp4,tmp+1,length(tmp4));
-          Str=tmp1+tmp3;
+//          Str=tmp1+substring(tmp4,0,length(tmp4));//250627
+          Str=tmp1;//+tmp3;//250627
           npos=indexof(Str,"?");
           //250601to
         );

@@ -4159,9 +4159,7 @@ Right():=(
           tmp=indexof(tmp4,"?");
           tmp2=substring(tmp4,0,length(tmp4));
           tmp1=tmp1+tmp2;          
-          Str=tmp1+substring(tmp4,0,length(tmp4));
-          tmp3=substring(tmp4,tmp+1,length(tmp4));
-          Str=tmp1+tmp3;
+          Str=tmp1;//+tmp3;//250627
           npos=indexof(Str,"?");
         );
       );
@@ -4722,9 +4720,9 @@ var cdy = CindyJS({
   ],
   ports: [{
     width: 1085,
-    height: 633,
+    height: 627,
     id: "CSCanvas",
-    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 120.26281279000555, -37.85574621013023]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 120.26281279000555, -37.23769321078116]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

@@ -1,0 +1,268 @@
+algbundleflg=0;
+addjdgflg=0;
+
+xx=-11;
+//Text34.xy=[xx,5.6]; 
+Seteditable(21,["","Size=16","Width=330"]);
+Text21.xy=[8,-7.5];//白い表示枠
+
+xx=-11;
+Settextkey(40,[xx,2.8],"0:Algebrite bundle","algbundleflg=1;",18);
+Settextkey(41,[xx,1.4],"1:Add Jdg button  ","addjdgflg=1;",18);
+Settextkey(42,[xx-3,1.4],"　　","",18);
+Settextkey(43,[xx-3,0];, "　　","",18);
+Settextkey(44,[xx-3,-1.4],"　　","",18);
+Settextkey(45,[xx-3,-2.8],"　　","",18);
+Settextkey(46,[xx-3,-4.2],"　　","",18);
+Settextkey(47,[xx-3,-5.6],"　　","",18);
+Settextkey(48,[xx-3,-7],"　　","",18);
+Settextkey(49,[xx-3,-8.4],"　　","",18);
+Settextkey(50,[xx-3,-9.8],"　　","",18);
+
+
+Algbundle(filename):=(
+  regional(htaL1,htaL2,htrL,htrL1,htrL2,htrL3,htwL,tmp0,tmp1,tmpn0,tmpn1);
+  htaL1=Readlines(Dircdy,"algbundle.txt");
+  htaL2=Readlines(Dircdy,"algcdylib.txt");
+  htrL=Readlines(Dircdy,filename);
+  tmp0="<script type="+Dqq("text/javascript")+" src="+Dqq("ketcindyjs/Cindy.js")+"></script>";
+  tmp1="<script id="+Dqq("csinit")+" type="+Dqq("text/x-cindyscript")+">";
+  tmpn0=select(1..(length(htrL)),indexof(htrL_#,tmp0)>0);
+  tmpn1=select(1..(length(htrL)),indexof(htrL_#,tmp1)>0);
+  tmpn0=tmpn0_1;//第1区切りの行番号
+  tmpn1=tmpn1_1;//第2区切りの行番号
+//  println(tmpn0);println(tmpn1);
+  htrL1=htrL_(1..tmpn0);//第1区切りまでをhtrL1とする。
+  htrL2=htrL_((tmpn0+1)..tmpn1);//第2区切りまでをhtrL2とする。
+  htrL3=htrL_((tmpn1+1)..length(htrL));//最後までをhtrL3とする。
+  htwL=concat(htrL1,htaL1);//htrL1にhtaL1を追加
+  htwL=concat(htwL,htrL2);//次にhtrL2を追加
+  htwL=concat(htwL,htaL2);//次にhtaL2を追加
+  htwL=concat(htwL,htrL3);//最後にhtrL3を追加
+  setdirectory(Dircdy);//元のファイルと同じパスに作る
+  filenamea=replace(filename,".html","a.html");
+  fid=openfile(filenamea);
+  forall(1..length(htwL),
+    println(fid,htwL_#);
+  );
+  closefile(fid);
+);
+
+Addjdgbutton(filename):=(
+  regional(htaL1,htaL2,htrL,htrL1,htrL2,htrL3,htwL,tmp0,tmp1,tmpn0,tmpn1);
+  htrL=Readlines(Dircdy,filename);
+  tmp0="stoknow=0;";
+  tmps1=select(1..(length(htrL)),indexof(htrL_#,tmp0)>0);
+  tmps1=tmps1_1;//第1区切りの行番号
+  tmp0="Windispg();";
+  tmps2=select(1..(length(htrL)),indexof(htrL_#,tmp0)>0);
+  tmps2=tmps2_1;//第2区切りの行番号
+  tmp0="geometry: [";
+  tmps3=select(1..(length(htrL)),indexof(htrL_#,tmp0)>0);
+  tmps3=tmps3_1;//第3区切りの行番号
+  htrL1=htrL_(1..(tmps1));
+  htrL2=htrL_((tmps1+1)..(tmps2-1));
+  htrL3=htrL_((tmps2)..(tmps3));
+  htrL4=htrL_((tmps3+1)..(length(htrL)));
+  htjL1=Readlines(Dircdy,"Jdgadd1.txt");
+  htjL2=Readlines(Dircdy,"Jdgadd2.txt");
+  htjL3=Readlines(Dircdy,"Jdgadd3.txt");
+  htwL=concat(htrL1,htjL1);//htrL1にhtjL1を追加
+  htwL=concat(htwL,htrL2);//次にhtrL2を追加
+  htwL=concat(htwL,htjL2);//次にhtjL2を追加
+  htwL=concat(htwL,htrL3);//次にhtrL3を追加
+  htwL=concat(htwL,htjL3);//次にhtjL3を追加
+  htwL=concat(htwL,htrL4);//最後にhtrL4を追加
+  setdirectory(Dircdy);//元のファイルと同じパスに作る
+  filenamej=replace(filename,".html","j.html");
+  fid=openfile(filenamej);
+  forall(1..length(htwL),
+    println(fid,htwL_#);
+  );
+  closefile(fid);
+);
+
+
+
+Resetsetting():=(
+//  quline="";
+//  shline="";
+//  caline="";
+  dispL=[];
+  Subsedit(21,"");
+  fselectL=[];
+  origin="";
+);
+
+Resetflg():=Resetflg(["ok","all"]);
+Resetflg(noflgorg):=(
+  regional(,noflgL,fL,tmp);
+  //global mp:mouse().xy
+  fL=["mxans","taskline","inserttask",
+      "anschart","insertscore","mkcard","class",
+      "table","mkfolder","maxima","make",
+      "combine","copycombine","anscheck",
+      "anssheet","scoresheet","ok","all"
+     ];
+  if(islist(noflgorg),
+    noflgL=noflgorg;
+  ,
+    noflgL=[noflgorg,"ok","all"];
+  );
+  fL=remove(fL,noflgL);
+  forall(fL,
+    parse(#+"flg=0;");
+  );
+);
+
+quelineflg=0;
+Resetflg([]);
+
+Remark(Px,str):=Remark(Px,str,"black");
+Remark(Px,str,clr):=(
+  //global Py
+  Letter([Px,Py],"e",str,["Size=1.2","Color="+clr]);
+  Py=Py-1;
+);
+
+
+
+Tablepos(tb,mv):=(
+  regional(tmp,tmp1,tmp2,cl,rw);
+  //global mp:mouse().xy, Dirdata
+  tmp1=apply(tb_1,#_1+mv_1);
+  tmp2=apply(tb_2,#_2+mv_2);
+  cl=0;
+  if((mp_1>tmp1_1)&(mp_1<tmp1_(-1)),
+    tmp=select(1..(length(tmp1)),tmp1_#>mp_1);
+    cl=tmp_1-1;
+  );
+  rw=0;
+  if((mp_2<tmp2_1)&(mp_2>tmp2_(-1)),
+    tmp=select(1..(length(tmp2)),tmp2_#<mp_2);
+    rw=tmp_(1)-1;
+  );
+  [cl,rw];
+);
+
+MakefileL(dfL):=(
+  regional(out,tmp,dir,selectL,fL,se,s);
+  out=[];
+  forall(1..(length(dfL)/2),nn,
+    dir=dfL_(2*nn-1);
+    tmp=dfL_(2*nn);
+    if(!islist(tmp),tmp=[tmp]);
+    selectL=apply(tmp,Strsplit(#,"*"));
+    fL=Filelist(dir);
+    fL=sort(fL);
+    forall(selectL,se,
+      tmp=fL;
+      forall(se,s,
+        tmp=select(tmp,indexof(#,s)>0);
+      );
+      out=concat(out,tmp);
+    );
+  );
+  out;
+);
+
+Selectfile(out):=Selectfile(out,100);
+Selectfile(out,Arg):=(
+  if(isstring(Arg),
+    Selectfile(out,100,Arg);
+  ,
+    Selectfile(out,Arg,"black");
+  );
+);
+
+
+Selectfile(out,num,clr):=(
+  regional(nblu,nblk,cl,rw,outd,tmp,tmp1,res);
+  //global mp:mouse().xy
+  outd=[];
+  if(!islist(num),
+    tmp=max([1,num]);
+    nblu=tmp..(length(out));
+  ,
+    nblu=num;
+  );
+  nblk=remove(1..(length(out)),nblu);
+  if(islist(num),numL=num,numL=1..num);
+  if(numL==[0],numL=[]);
+  forall(out,
+    tmp=Indexall(#,".");
+    if(length(tmp)>0,
+      tmp=tmp_(-1);
+      tmp1=substring(#,0,tmp-1);
+    ,
+      tmp1=#;
+    );
+    outd=append(outd,tmp1);
+  );
+  tmp=min([length(out),15]);
+  tmp1=1..tmp;
+  if(length(tmp1)>0,
+    forall(nblu,
+      Putcell(1,#,"l2",outd_#,["Color=blue"]);
+    );
+    forall(nblk,
+      Putcell(1,#,"l2",outd_#,["Color="+clr]);
+    );
+    tmp=Tablepos(tb1,mv);
+    cl=tmp_1; rw=tmp_2;
+    if((cl*rw>0)&(rw<=length(out)),
+      res=[rw,out_rw];
+    ,
+      res=[0,""];
+    );
+  ,
+    res=[0,""];
+  );
+  res;
+);
+
+
+/////// figures
+
+
+Initscreen():=(//必要;
+  Px=7.5;Py=3;
+  Remark(Px,"0:Algebriteのbundle");
+  Remark(Px,"1:Jdgボタンの追加");
+  xL=[83];
+  yL=apply(1..10,11);
+  Tabledata("1",xL,yL,[],
+     [0,"Setwin=n","Move=[-2,-7.3]","Msg=n"]);
+  mv=[-1,-7];
+);
+
+
+
+//variable
+
+quline="";
+shline="";
+sqline="";
+caline="";
+mrkline="";
+mxscline="";
+ansline="";
+anssheetflg=0;
+anschartflg=0;
+mxansflg=0;
+anscheckflg=0;
+makeflg=0;
+opmake="";
+reset=0;
+numL=[];
+//dispL=[];
+//disp0L=[];
+//origin="";
+tab=unicode("0009");
+dcm="::";
+posxy0=[8,-7.5];
+posxy=posxy0;
+mp=[-10,-10];
+size=["Size=1.2"];
+clr=size;
+

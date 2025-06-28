@@ -1,3 +1,4 @@
+//20250628 funflg (case of ?)
 //20250607 tanim
 //20240627 funflg (ansL,anspL)
 //20240621
@@ -224,7 +225,7 @@ if(funflg==1,
         tmp2="";
       ,
 	      tmp1=substring(Str,0,npos-1);
-	      tmp2=substring(Str,npos,length(Str));
+	      tmp2=substring(Str,npos-1,length(Str));//250628
       );
       out=Addfunstr(name,npos,tmp1);
       tmp1=out_1;
@@ -242,6 +243,7 @@ if(funflg==1,
       );
     );
   );
+  Str=replace(Str,"??","?");////250628
   StrLL=append(StrLL,Str);
   StrL_ch=Str;
   StrpL_ch=Strp;

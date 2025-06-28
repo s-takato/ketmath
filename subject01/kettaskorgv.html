@@ -4496,7 +4496,7 @@ if(funflg==1,
         tmp2="";
       ,
 	      tmp1=substring(Str,0,npos-1);
-	      tmp2=substring(Str,npos,length(Str));
+	      tmp2=substring(Str,npos-1,length(Str));//250628
       );
       out=Addfunstr(name,npos,tmp1);
       tmp1=out_1;
@@ -4514,6 +4514,7 @@ if(funflg==1,
       );
     );
   );
+  Str=replace(Str,"??","?");////250628
   StrLL=append(StrLL,Str);
   StrL_ch=Str;
   StrpL_ch=Strp;
@@ -4611,7 +4612,7 @@ var cdy = CindyJS({
     {name: "Text7", type: "Button", pos: [-2.0, -4.0, -0.17391304347826086], color: [0.0, 0.0, 0.0], fillcolor: [0.0, 1.0, 0.0], fillalpha: 0.45, script: "ch=1;initflg=1;", text: "1", textsize: 18.0},
     {name: "Text8", type: "Button", pos: [4.0, -1.1478260869565216, 0.34782608695652173], color: [0.0, 0.0, 0.0], fillcolor: [0.0, 1.0, 0.0], fillalpha: 0.45, script: "ch=2;initflg=1;", text: "2", textsize: 18.0},
     {name: "Text4", type: "Button", pos: [4.0, 0.09718670076726342, 0.10230179028132992], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "nqinc=1;", text: "　　", textsize: 13.0},
-    {name: "Text20", type: "Button", pos: [4.0, -0.5408450704225353, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "startflg=1;", text: "　  　", textsize: 14.0},
+    {name: "Text20", type: "Button", pos: [4.0, -0.5408450704225353, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "startflg=1; resetflg=1;", text: "　  　", textsize: 14.0},
     {name: "Text30", type: "Button", pos: [4.0, -1.3137254901960786, 0.19607843137254902], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "funflg=1;name=[\"La\",\"A\",\"{\\alpha}\",\"\\mathbf{a}\",\"{\\vec{a}\\;}\"]_keytype;", text: "　　", textsize: 14.0},
     {name: "Text31", type: "Button", pos: [4.0, -1.08502024291498, 0.1619433198380567], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "funflg=1;name=[\"Lb\",\"B\",\"{\\beta}\",\"\\mathbf{b}\",\"{\\vec{b}\\;}\"]_keytype;", text: "　　", textsize: 14.0},
     {name: "Text32", type: "Button", pos: [4.0, -0.9241379310344828, 0.13793103448275862], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "funflg=1;name=[\"Lc\",\"C\",\"{\\gamma}\",\"\\mathbf{c}\",\"{\\vec{c}\\;}\"]_keytype;", text: "　　", textsize: 14.0},
@@ -4720,10 +4721,10 @@ var cdy = CindyJS({
     {name: "Text374", type: "Button", pos: [4.0, -1.7183098591549293, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "stopanimation();Animeflg=\"\";sstart=Current;", text: "　  　", textsize: 14.0}
   ],
   ports: [{
-    width: 1084,
+    width: 1079,
     height: 629,
     id: "CSCanvas",
-    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 120.1598039567807, -37.44371087723085]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 119.6447597906565, -37.44371087723085]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

@@ -1,4 +1,5 @@
-//250613 Startketmath year =>year(,classname)
+//250705 Copycombinedo dbg
+//250701 Startketmath year =>year(,class,subfolder)
 //250429 tootlketmathlib folder created. functions of figures added.
 //241004 Maketable changed(debugged)
 //240530 Anschart(scoreline) changed
@@ -1860,15 +1861,17 @@ Scorewithmaxima(fname):=(
 );
 
 /////// figures
-Startketmath(year):=Startketmath(year,""); //250613[2Lines]
-Startketmath(year,classname):=(
+Startketmath(year):=Startketmath(year,"",""); //250701[3Lines]
+Startketmath(year,name):=Startketmath(year,name,"");
+Startketmath(year,name,subfolder):=(
   regional(tmp,ddata,tmp1);
   Addax(0);
   Setwindow([-11.5,24.5],[-13,6]);
   Year=year;//250613[2Lines]
-  Classname=classname;
+  Subfolder=subfolder;//230705
+  Name=name;
   Text1.text=Year; //230820
-  Dirdist=Gethome()+"/Dropbox/"+Year+class;//250613
+  Dirdist=Gethome()+"/Dropbox/"+Year+name;//250705
   ddata=Datalist_Numdata;
   Text15.text=ddata;
   Dirdata=Dircdy+ddata;
@@ -2426,7 +2429,7 @@ Copycombinedo():=(
 //  tmp=indexof(Dirdist,"Dropbox");
 //  tmp=tmp+length("Dropbox");
 //  tmp=substring(Dirdist,tmp,length(Dirdist));//250613[2Lines]
-  tmp1=[Year+Classname,"  OK","  Modify"];
+  tmp1=[Year+Name,"  OK","  Modify"];
   mouse().xy=[-1,0];
   mp=mouse().xy;
   res=Selectfile(tmp1,[1]);
@@ -2439,13 +2442,10 @@ Copycombinedo():=(
     );
   );
   if(allflg==1,
-    sep=pathsep();
-    if(indexof(Dirdist,sep)==0,sep="/");
-    tmp=Indexall(Dirdist,sep);
-    parent=substring(Dirdist,0,tmp_(-1)-1);
-    child=substring(Dirdist,tmp_(-1),length(Dirdist));
-    Makedir(parent,child);
-    Copycombine(parent,child);
+    if(length(Subfolder)>0, //250705from
+      Makedir(Dirdist,Subfolder);
+    );
+    Copycombine(Dirdist,Subfolder); //250705to
     copycombineflg=0;
   );
 ); //Copycombinedo end

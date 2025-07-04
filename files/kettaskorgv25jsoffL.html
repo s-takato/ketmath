@@ -4239,6 +4239,7 @@ ketlibflg=1;
 
 startflg=1;
 stoknow=0;
+jdgflg=0;
 
 Adddrw(str):=(
   DrwL=append(DrwL,[dpos,str,24]);
@@ -4581,6 +4582,9 @@ if((recflg==1)&(stoknow==2),
 
 Windispg();
 
+Jdgp=Text18.xy+[-1,3];//"Jdg"の表示位置
+Keytable(1,43,1,33,Jdgp,0,[["Jdg"]],[0,-0.5],21);//"Jdg"表示
+
 ;
 
 </script>
@@ -4718,13 +4722,14 @@ var cdy = CindyJS({
     {name: "Text371", type: "Button", pos: [4.0, -1.1605633802816901, 0.056338028169014086], color: [1.0, 1.0, 1.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "resetclock();playanimation();Animeflg=1;Dirflg=1;        sorg=Current;", text: "　  　", textsize: 14.0},
     {name: "Text372", type: "Button", pos: [4.0, -1.3464788732394366, 0.056338028169014086], color: [1.0, 1.0, 1.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "Animeflg=1-Animeflg;if(Animeflg==0,pauseanimation();        sorg=sstart;,resetclock();playanimation(););", text: "　  　", textsize: 14.0},
     {name: "Text373", type: "Button", pos: [4.0, -1.5323943661971828, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "sorg=sstart;Dirflg=-Dirflg;Animeflg=1;resetclock();        playanimation();", text: "　  　", textsize: 14.0},
-    {name: "Text374", type: "Button", pos: [4.0, -1.7183098591549293, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "stopanimation();Animeflg=\"\";sstart=Current;", text: "　  　", textsize: 14.0}
+    {name: "Text374", type: "Button", pos: [4.0, -1.7183098591549293, 0.056338028169014086], color: [0.467, 0.0, 0.718], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "stopanimation();Animeflg=\"\";sstart=Current;", text: "　  　", textsize: 14.0},
+    {name: "Text500", type: "Button", pos: [2.2792452830188683, -4.0, 0.15094339622641512], color: [0.0, 0.0, 0.0], fillcolor: [1.0, 1.0, 1.0], fillalpha: 0.27272728085517883, script: "jdgflg=1-jdgflg;", text: "　　", textsize: 14.0}
   ],
   ports: [{
     width: 1079,
-    height: 629,
+    height: 638,
     id: "CSCanvas",
-    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 119.6447597906565, -37.44371087723085]}],
+    transform: [{visibleRect: [8.498228741049642, 27.348845221196125, 119.6447597906565, -38.37079037625445]}],
     grid: 5.0,
     background: "rgb(247,247,247)"
   }],

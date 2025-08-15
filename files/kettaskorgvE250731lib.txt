@@ -119,7 +119,7 @@ CtrkeyL=[
   [["Cal"],["Lin"],[""]],
   [["Rec"]],
 //  [["BF","","Nxt"]],
-  [["次","","戻"]], //240510
+  [["$=\!>$","","$<\!=$"]], //240510
   [["AC","$<\!\!\!\!\!-\!\!-$",
       "$-\!\!-\!\!\!\!\!>$","DL","OK"]] //240514
 ];
@@ -234,9 +234,11 @@ Undo():=(
     if(length(StrLL)>1,
       Str=StrLL_(-2);
       StrLL=StrLL_(1..(length(StrLL)-1));
+      StrL_ch=Str;//250730
 	);
     tmp=indexof(Str,"?");
     if(tmp>0,npos=tmp,npos=length(Str));
+    Subsedit(2,Str);///250730
   );
   Strnow=Str;
   StrL_ch=Str;
@@ -250,11 +252,13 @@ Allclear():=(
   pre=preL_ch;
   Str=pre;
   Strp="";
-  StrLL=[];
+  StrLL=[Str];//250730
   StrL_ch=Str;
   StrpL_ch=Strp;
   npos=indexof(Str,"?");
   if(npos==0,npos=length(Str));
+  Subsedit(ch,Str);//250730
+  if(ch==2,StrLL=append(StrLL,Str));//250731
   funflg=0;
 );
 
@@ -292,6 +296,8 @@ Delete():=(
 	);
   );
   StrL_ch=Str;
+  Subsedit(ch,Str);//250730
+  if(ch==2,StrLL=append(StrLL,Str));//250731
   funflg=0;
 );
 
@@ -339,14 +345,13 @@ Left():=(
   preL=["",tmp,"St="];
   pre=preL_ch;
   if(length(Str)>length(pre),
-    StrLL=append(StrLL,Str);
     tmp=indexof(Str,"?");
     if(tmp>length(pre)+1,
       tmp1=substring(Str,0,tmp-2)+"?";
       tmp2=substring(Str,tmp-2,tmp-1);
       tmp3=substring(Str,tmp,length(Str));
       Str=tmp1+tmp2+tmp3;
-      npos=length(tmp1+"?");
+      npos=indexof(Str,"?");
     );
     if(tmp==0,
       tmp1=substring(Str,0,length(Str)-1)+"?";
@@ -355,6 +360,8 @@ Left():=(
       npos=length(tmp1);
     );
     StrL_ch=Str;
+    Subsedit(ch,Str);//250731
+    if(ch==2,StrLL=append(StrLL,Str));////250731
   );
   funflg=0;
 );
@@ -393,6 +400,7 @@ Right():=(
       );
     );
     StrL_ch=Str;
+    if(ch==2,StrLL=append(StrLL,Str));//250731
 	Subsedit(ch,Str);
   );
   funflg=0;
@@ -420,10 +428,10 @@ RRight():=(
   regional(tmp,tmp1,tmp2,tmp3);
   //global Str,npos
   if(length(Str)>0,
-    StrLL=append(StrLL,Str);
     Str=replace(Str,"?","");
     npos=length(Str);
     StrL_ch=Str;
+    if(ch==2,StrLL=append(StrLL,Str));//250731
 	Subsedit(ch,Str);
   );
   funflg=0;

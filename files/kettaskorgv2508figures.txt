@@ -1,3 +1,4 @@
+//20250810 jdgflg added in start block
 //20250628 funflg (case of ?)
 //20250607 tanim
 //20240627 funflg (ansL,anspL)
@@ -41,6 +42,7 @@ if(startflg==1,
 //  pgpos=[41.82,1.1];
   stok=1;
   tanim=0;//250607
+  jdgflg=0; //250810
   startflg=0;
 );
 
@@ -115,7 +117,7 @@ if(stok<=1,
       name="";
     ,
       Out=Addfunstr(name,length(Str),Str);
-	    Str=Out_1;
+	  Str=Out_1;
       StrL_3=Str;
       npos=length(Str);
     );
@@ -158,8 +160,8 @@ if(stok>=2,
       rechead=text(stno)+";;"+text(stno);
       Str=ansL_1;
       StrL_2=Str;
+      StrLL=[Str];//250729
       Subsedit(2,Str);
-//      StrLL=append(StrLL,Str);
       tmp=indexof(Str,"?");
       if(tmp>0,npos=tmp,npos=length(Str));
       tmp=Str;//replace(Str,"?","");//250627
@@ -186,6 +188,7 @@ if(stoknow==2,
     StrL_1=quest_nqu;
     TexL_1=GettexformL(StrL_1);
     Str=ansL_nqu;
+    StrLL=[Str]; //250729
     Strp=anspL_nqu;
     StrL_2=Str;
     TexL_2=GettexformL(Str);
@@ -199,7 +202,7 @@ if(stoknow==2,
   );
   tmp=Quesno();
   if(length(tmp)>0,
-    drawtext(Text1.xy-[7,0],tmp,size->22);
+    drawtext(Text1.xy-[8,0],tmp,size->22);
     tmp=select(1..nqu,//230411from
           substring(quest_#,0,1)=="Q");
     if(length(tmp)>0,
@@ -212,7 +215,7 @@ if(stoknow==2,
   );
 );
 
-if(funflg==1,
+if((stok==2)&(funflg==1),//250729
   if(contains(Manifun,name),
     parse(name+";");
   ,
@@ -220,39 +223,27 @@ if(funflg==1,
       Str=StrL_ch;
       npos=indexof(Str,"?");
       if(npos==0,
-        npos=length(Str);
         tmp1=Str;
         tmp2="";
+        npos=length(Str);
       ,
-	      tmp1=substring(Str,0,npos-1);
-	      tmp2=substring(Str,npos-1,length(Str));//250628
+	    tmp1=substring(Str,0,npos-1);
+	    tmp2=substring(Str,npos-1,length(Str));//250628
       );
       out=Addfunstr(name,npos,tmp1);
       tmp1=out_1;
-      npos=indexof(tmp1,"?");
-      if(npos>0,
-        Str=tmp1+tmp2;
-      ,
-        if(length(tmp2)>0,
-          Str=tmp1+"?"+tmp2;
-          npos=indexof(Str,"?");
-        ,
-          Str=tmp1+tmp2;
-          npos=length(tmp1);
-        );
-      );
+      Str=tmp1+tmp2;
+      Str=replace(Str,"(^(?)","(?,");////250729[2lines]
+      Str=replace(Str,"(_(?)","(?,");
+      Str=replace(Str,"??","?");
+      StrLL=append(StrLL,Str);
+      StrL_ch=Str;
+      StrpL_ch=Strp;
+      ansL_nqu=Str;
+      anspL_nqu=Strp;
+      Subsedit(ch,Str);
     );
   );
-  Str=replace(Str,"??","?");////250628
-  StrLL=append(StrLL,Str);
-  StrL_ch=Str;
-  StrpL_ch=Strp;
-  ansL_nqu=Str;
-  anspL_nqu=Strp;
-  tmp=Str;//replace(Str,"?","");//250627
-  tmp=Convtrigpow(tmp);
-  TexL_ch=Gettexform(tmp);
-  Subsedit(ch,Str);
   name="";
   funflg=0;
 );

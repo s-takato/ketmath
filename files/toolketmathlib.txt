@@ -2352,90 +2352,73 @@ Mkcarddo():=(
   chnameL=apply(chnameL,#_3);
   tmp=apply(chnameL,replace(#,".csv",""));
   res=Selectfile(tmp,"blue");
-//  if((res_1>0)&(res_1<=length(tmp)),
-//    chartL=[res_2+".csv"];
-//    Putcell("",1,res_1,"l2",res_2,["Color=red"]);
-//  );
   qunameL=apply(chnameL,
           replace(#,[["anschart","question"],[".csv",".txt"]]));
   if(allflg==1,
     stL=Readlines(Dirdata,"student"+Year+".txt");
     stall=length(stL);
-    queL=[];
+    queLL=[];
     forall(1..(length(qunameL)),kk,
       tmp=Readlines(Dirdata,qunameL_kk);
-      queL=append(queL,tmp);
+      queLL=append(queLL,tmp);
     );
-    quall=length(queL);
-    chartL=[];
+    quall=length(queLL);
+    chartLLL=[];
     forall(1..(length(chnameL)),kk,
       tmp=Readlines(Dircdy,chnameL_kk);
       tmp=apply(tmp,Strsplit(#,Tab));
-      chartL=append(chartL,tmp);
+      chartLLL=append(chartLLL,tmp);
     );
-    dataL=[];
+    dataLL=[];
     forall(1..stall,ns,
+      dataL=[];
       forall(1..quall,nq,
-        que=queL_nq;
-        chart=chartL_nq;
-        if(nq==1,
-          data=[stL_ns+" "+chart_1_2+" "+chart_1_3];
+        queL=queLL_nq;
+        chartLL=chartLLL_nq;
+        tmp=select(1..(length(queL)),queL_#=="Sheet");
+        queL=queL_(2..(tmp_1-1));
+        tmp1=chartLL_1_5;
+        tmp1=replace(tmp1,"---"," ");
+        forall(1..(length(queL)),
+          tmp1=tmp1+" "+queL_#;
         );
-        dt=chart_1_5+que_2;
-        data=append(data,replace(dt,"---"," "));
-        blk="";
-        sqL=[];
-        forall(1..(length(que)),lq,
-          tmp=substring(que_lq,0,1);
-          if(tmp=="Q",blk="Q");
-          if(tmp=="S",blk="S");
-          if(tmp=="A",blk="A");
-          if(tmp==Br_1,
-            if(blk=="Q",
-              sqL=append(sqL,"　"+que_lq);
-            );
-          );
+        que=substring(tmp1,0,length(tmp1));
+        data=[que];
+        caL=chartLL_1;
+        tmp1="正解";
+        forall(6..(length(caL)),
+          tmp1=tmp1+" "+caL_#;
         );
-        data=concat(data,sqL);
-        ca=chart_1;
-        tmp1=select(1..(length(ca)),substring(ca_#,0,1)==Br_1);
-        tmp1=tmp1_1;
-        ca=ca_(tmp1..(length(ca)));
-        sa=chart_(nq+1);
-        sa=sa_(tmp1..(length(sa)));
-        forall(1..(length(ca)/2),
-          tmp1=ca_(2*#-1);
-          tmp=indexof(tmp1,Br_2);
-          tmp2=substring(tmp1,0,tmp);
-          tmp3=substring(tmp1,tmp,length(tmp1));
-          data=append(data,"　　"+tmp2+"正解　"+tmp3);
-          tmp1=sa_(2*#-1);
-          tmp=indexof(tmp1,Br_2);
-          if(tmp==2,tmp4="  ",tmp4="   ");
-          tmp2=substring(tmp1,0,tmp);          
-          tmp3=substring(tmp1,tmp,length(tmp1));
-          data=append(data,"　　"+tmp4+"回答　"+tmp3+"　"+chart_(nq+1)_4);
-          tmp1=ca_(2*#);
-          tmp2=sa_(2*#);
-          data=append(data,"　　"+tmp4+"得点　"+tmp2+"/"+tmp1);
+        ca=substring(tmp1,0,length(tmp1));
+        data=append(data,ca);
+        saL=chartLL_(ns+1);
+        time=saL_4;
+        tmp1="回答";
+        forall(6..(length(saL)),
+          tmp1=tmp1+" "+saL_#;
         );
+        sa=substring(tmp1,0,length(tmp1));
+        data=append(data,sa);
+        data=append(data,time);
+        data=append(data,"");
+        dataL=concat(dataL,data);
       );
-      data=append(data,"");
-      dataL=append(dataL,data);
-    );  
+      dataLL=append(dataLL,dataL);
+    );
   );
   Makedir(Dirdata,"/card");
   forall(1..stall,ns,
-    tmp=chart_1_3;
+    tmp=chartLL_1_3;
     if(length(tmp)==3,tmp="0"+tmp);
     file=stL_ns+tmp+".txt";
     setdirectory(Dirdata+"/card");
     fid=openfile(file);
-    apply(dataL_ns,println(fid,#));
+    dataL=dataLL_ns;
+    forall(1..(length(dataL)),
+      println(fid,dataL_#);
+    );
     closefile(fid);
   );
-//  allflg=0; //reset with 'resetflg'
-//  mkcardflg=0; //as above
   dispL=append(dispL,["Cards gemerated",clrb]);
 );
 

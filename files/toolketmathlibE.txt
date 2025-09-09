@@ -1,3 +1,8 @@
+//250726 Startketmath class=""; name=folder+subfolder
+//250706 Makestdata
+//250706 sep->Tab ":"->","
+//250705 Copycombinedo dbg
+//250701 Startketmath year =>year(,class,subfolder)
 //250429 tootlketmathlib folder created. functions of figures added.
 //241004 Maketable changed(debugged)
 //240530 Anschart(scoreline) changed
@@ -16,6 +21,7 @@ Seteditable(21,["","Size=16","Width=330"]);
 Text21.xy=[8,-7.5];
 Text22.xy=[21.8,-9];
 Text23.xy=[23.2,-9];
+Tab=unicode("0009"); //250706
 
 xx=-11;
 Settextkey(41,[xx,2.8],"1.taskline","",18);
@@ -722,7 +728,7 @@ Makestdata(file1,file2):=(
   regional(dtL,dtorg,dt,fname,fid,nn,stnL,
         tmp,tmp1,tmp2,tmp3);
   //file1:student.txt, file2:2anssheet.txt, caL:caline
-  //fname:anschart.csv, dtL:studentdata(output)
+  //fname:anschart.csv, dtL:studentdata(output) //remove
   //global data,caL,ccalc,cscr,stdata,Year,warL,errL,eflg
   //file1=student(txt), file2=2anssheet(txt)
   warL=[]; errL=[];
@@ -730,7 +736,8 @@ Makestdata(file1,file2):=(
   stdata=apply(1..(length(tmp1)),[text(#),tmp1_#]);
   stnL=apply(stdata,#_1);
   dtL=Readlines(Dirdata,file2);
-  fname=replace(file2,[["2anssheet","anschart"],[".txt",".csv"]]);
+  fname=replace(file2,
+      [["2anssheet","anschart"],[".txt",".csv"]]);
   forall(1..(length(stdata)),
     tmp1=stdata_#;
     tmp2=noans_(3..(length(noans)));
@@ -785,12 +792,60 @@ Makestdata(file1,file2):=(
     setdirectory(Dircdy);
     fid=openfile(fname);
     forall(tmp1,
-      println(fid,#);
+      tmp2=#;//250706from
+      tmp2=replace(#,",",Tab);
+      tmp=indexof(tmp2,"Q");//250706from
+      tmp3=substring(tmp2,0,tmp-1);
+      tmp2=substring(tmp2,tmp-1,length(tmp2));
+      tmp2=replace(tmp2,":",",");
+      tmp2=tmp3+tmp2;//250706to
+      println(fid,tmp2);
     );
     closefile(fid);
   );
 );
 
+Anschartdo():=(
+  Resetflg("anschart");
+  Resetsetting();
+  tmp=Filelist(Dirdata);
+  fstu=select(tmp,substring(#,0,7)=="student");
+  if(length(fstu)==0,
+    dispL=[["student file not found",clrr]];
+  ,
+    fstu=fstu_1;  
+    out=MakefileL([Dirdata,["question"]]);
+    out=select(out,indexof(#,"no")==0);
+    out=apply(out,replace(#,".txt",""));
+    out=Sortsel(out,"question");
+    out=apply(out,#_3);
+    fnameL=apply(out,#+".txt");
+    res=Selectfile(out,"blue");
+    if((res_1>0)&(res_1<=length(out)),
+      fnameL=[res_2+".txt"];
+      Putcell("",1,res_1,"l2",res_2,["Color=red"]);
+    );
+    if(allflg==1,
+      forall(fnameL,fname,
+        Makecadata(fname); //caL,ccalc,cscr,noans
+        fans=replace(fname,"question","2anssheet");
+        Makestdata(fstu,fans);
+      );
+      if(length(errL)>0,
+        dispL=append(dispL,["error",clrr]);
+      ,
+        dispL=append(dispL,
+           ["generate anschart",clrb]);
+        if(warL>0,
+          dispL=append(dispL,["warn",clrr]);
+        );
+      );
+      reset=0;
+      anschartflg=0;
+      allflg=0;
+    );
+  );
+);// Anschartdo end
 
 Scorelineall(fstu,fname):=(
   regional(fname1,fname2,fname3,dt,fid,
@@ -1191,14 +1246,16 @@ Maketable():=(
   regional(fall,fnameL,nf,ndt,head,cque,cscr,cnum,
        stall,qname,n,ns,cs,dt,pos,dtL,dall,sum
        tmp,tmp1,tmp2,tmp3,tmp4,tmp5);
-  //global Dirdata,Class,Date,ansline,tab
+  //global Dirdata,Class,Date,ansline
   fall=Filelist(Dircdy);
-  fnameL=select(fall,indexof(#,"anschart")>0);
+  fnameL=select(fall,
+           (indexof(#,"anschart")>0)&(indexof(#,".")>0)
+         );
   fnameL=Sortsel(fnameL,"anschart");
   fnameL=apply(fnameL,#_3);
   forall(1..(length(fnameL)),nf,
     dt=Readlines(Dircdy,fnameL_nf);
-	dt=apply(dt,Strsplit(#,","));
+	dt=apply(dt,Strsplit(#,Tab));//250801
     if(nf==1,
       dtL=Choosemat(dt,1..4);
       head=apply(1..4,"");
@@ -1239,7 +1296,10 @@ Maketable():=(
     dtL=Joinmat(dtL,tmp1);
   );
   dtL=prepend(head,dtL);
-if(1==1,//startif
+  forall(1..(length(dtL)), //250801from
+    tmp=text(dtL_#);
+    dtL_#=replace(tmp,",",Tab);
+  ); //250801to
   //make file
   tmp="sumtable"+Class+Date+".csv";
   setdirectory(Dircdy);
@@ -1250,40 +1310,8 @@ if(1==1,//startif
     println(fid,tmp);
   );
   closefile(fid);
-);//endif
 );
   
-Copycombine(parent,child):=(
-  regional(fid,dir,fL,stL,date,ns,ne,
-        tmp,tmp1,tmp2);
-  if(length(Dirdist)>0,
-    dir=Dirdata+"/card";
-    fL=Filelist(dir);
-    fL=select(fL,indexof(#,"total")>0);
-    if(length(fL)==0,
-      dispL=[["No total files",clrr]];
-    ,
-      fL=sort(fL);
-      forall(fL,tmp1,
-        ns=indexof(tmp1,"st")+1;
-        ne=indexof(tmp1,".txt")-1;
-        tmp=substring(tmp1,ns,ne);
-        tmp2=parent+"/"+child;
-        Makedir(tmp2,tmp);
-        setdirectory(tmp2+"/"+tmp);
-        tmp=Readlines(dir,tmp1);
-        fid=openfile(tmp1);
-        forall(tmp,
-          println(fid,#);
-        );
-        closefile(fid);
-      );
-      dispL=append(dispL,
-          ["CombineData copied",clrb]);
-    );
-  );
-);
-
 Addmxcalc(nf,fnameL):=(
   regional(fname,fout,lineL,nall,mQL,nm,mQ,mc,me,str,outL,
            vL,mcL,cmdL,flg,ret,opc,ansnm,mm,finflg,
@@ -1857,18 +1885,22 @@ Scorewithmaxima(fname):=(
 );
 
 /////// figures
-
-Startketmath(year):=(
+Startketmath(name):=Startketmath(Year,name); //250724
+Startketmath(year,name):=( //250724
   regional(tmp,ddata,tmp1);
   Addax(0);
   Setwindow([-11.5,24.5],[-13,6]);
-  Year=year;
+  Name=name;
+  Year=year;//250724
   Text1.text=Year; //230820
-  Dirdist=Gethome()+"/Dropbox/2025polytech";
-  ddata=Datalist_Numdata;
+  Dirdist=Gethome()+"/Dropbox/"+name;//250724
+//  apply(Datalist,println(#));
+//  ddata=Datalist_Numdata;
+  ddata="data";//250726
   Text15.text=ddata;
   Dirdata=Dircdy+ddata;
-  Class=replace(ddata,"data","");
+//  Class=replace(ddata,"data","");
+  Class="";//250726
   tmp=Dircdy;
   tmp1=tmp_(-1);
   tmp=Strsplit(tmp,tmp1);
@@ -1876,13 +1908,13 @@ Startketmath(year):=(
   mxrange=1..1000; // range for maxima
   tmp=Filelist(Dircdy);
   tmp=select(tmp,substring(#,0,4)=="data");
-  Datalist=sort(tmp);
-  forall(Datalist,
-    tmp=replace(#,"data","embeddata");
-    Makedir(Dircdy,tmp);
-  );
-  Alldata=length(Datalist);
-  Numdata=1;
+//  Datalist=sort(tmp); //150726 remove3Lines
+//  forall(Datalist,
+//    tmp=replace(#,"data","embeddata");
+    Makedir(Dircdy,"embeddata"); //150726
+//  ); //150726 remove3Lines
+//  Alldata=length(Datalist);
+//  Numdata=1;
   dispL=[];
   if(indexof(Toupper(PathM),"MAXIMA")>0,
     maximaok=true;
@@ -1951,7 +1983,6 @@ Tasklinedo():=(
       );
       dispL=append(dispL,
            ["generate tasklines",clrb]);
-           println([82,dispL]);
       reset=0;
       tasklineflg=0;
       stquelineflg=0;
@@ -2102,48 +2133,6 @@ Anssheetdo():=(
     anssheetflg=0;
   );
 ); //end Anssheetdo
-
-Anschartdo():=(
-  Resetflg("anschart");
-  Resetsetting();
-  tmp=Filelist(Dirdata);
-  fstu=select(tmp,substring(#,0,7)=="student");
-  if(length(fstu)==0,
-    dispL=[["student file not found",clrr]];
-  ,
-    fstu=fstu_1;  
-    out=MakefileL([Dirdata,["question"]]);
-    out=select(out,indexof(#,"no")==0);
-    out=apply(out,replace(#,".txt",""));
-    out=Sortsel(out,"question");
-    out=apply(out,#_3);
-    fnameL=apply(out,#+".txt");
-    res=Selectfile(out,"blue");
-    if((res_1>0)&(res_1<=length(out)),
-      fnameL=[res_2+".txt"];
-      Putcell("",1,res_1,"l2",res_2,["Color=red"]);
-    );
-    if(allflg==1,
-      forall(fnameL,fname,
-        Makecadata(fname); //caL,ccalc,cscr,noans
-        fans=replace(fname,"question","2anssheet");
-        Makestdata(fstu,fans);
-      );
-      if(length(errL)>0,
-        dispL=append(dispL,["error",clrr]);
-      ,
-        dispL=append(dispL,
-           ["generate anschart",clrb]);
-        if(warL>0,
-          dispL=append(dispL,["warn",clrr]);
-        );
-      );
-      reset=0;
-      anschartflg=0;
-      allflg=0;
-    );
-  );
-);// Anschartdo end
 
 Scorelinedo():=(
   Resetflg("scoreline");
@@ -2349,55 +2338,84 @@ Scoresheetdo():=(
 );
 
 Mkcarddo():=(
+  Br=["[","]"];
   Resetflg(["mkcard","all"]);
   Resetsetting();
   dispL=[];
   makedir(Dirdata,"card");
   tmp=MakefileL([Dircdy,"anschart"]);
-  fnameL=Sortsel(tmp,"anschart");
-  fnameL=apply(fnameL,#_3);
-  tmp=apply(fnameL,replace(#,".csv",""));
+  chnameL=Sortsel(tmp,"anschart");
+  chnameL=apply(chnameL,#_3);
+  tmp=apply(chnameL,replace(#,".csv",""));
   res=Selectfile(tmp,"blue");
-  if((res_1>0)&(res_1<=length(tmp)),
-    fnameL=[res_2+".csv"];
-    Putcell("",1,res_1,"l2",res_2,["Color=red"]);
-  );
+  qunameL=apply(chnameL,
+          replace(#,[["anschart","question"],[".csv",".txt"]]));
   if(allflg==1,
-    forall(1..(length(fnameL)),kk,
-      fname=fnameL_kk;
-      ftask=replace(fname,"anschart","1taskline");
-      ftask=replace(ftask,".csv",".txt");
-      if(!isexists(Dirdata,ftask),
-        dispL=append(dispL,ftask+" not found");
-      ,
-        dtL=Makecards(fname);
-        if(kk==1,
-          out=dtL;
-          nst=length(out);
-        ,
-          forall(1..nst,
-            out_#=append(out_#,"");
-            out_#=concat(out_#,dtL_#);
-          );
+    stL=Readlines(Dirdata,"student"+Year+".txt");
+    stall=length(stL);
+    queLL=[];
+    forall(1..(length(qunameL)),kk,
+      tmp=Readlines(Dirdata,qunameL_kk);
+      queLL=append(queLL,tmp);
+    );
+    quall=length(queLL);
+    chartLLL=[];
+    forall(1..(length(chnameL)),kk,
+      tmp=Readlines(Dircdy,chnameL_kk);
+      tmp=apply(tmp,Strsplit(#,Tab));
+      chartLLL=append(chartLLL,tmp);
+    );
+    dataLL=[];
+    forall(1..stall,ns,
+      dataL=[];
+      forall(1..quall,nq,
+        queL=queLL_nq;
+        chartLL=chartLLL_nq;
+        tmp=select(1..(length(queL)),queL_#=="Sheet");
+        queL=queL_(2..(tmp_1-1));
+        tmp1=chartLL_1_5;
+        tmp1=replace(tmp1,"---"," ");
+        forall(1..(length(queL)),
+          tmp1=tmp1+" "+queL_#;
         );
+        que=substring(tmp1,0,length(tmp1));
+        data=[que];
+        caL=chartLL_1;
+        tmp1="正解";
+        forall(6..(length(caL)),
+          tmp1=tmp1+" "+caL_#;
+        );
+        ca=substring(tmp1,0,length(tmp1));
+        data=append(data,ca);
+        saL=chartLL_(ns+1);
+        time=saL_4;
+        tmp1="回答";
+        forall(6..(length(saL)),
+          tmp1=tmp1+" "+saL_#;
+        );
+        sa=substring(tmp1,0,length(tmp1));
+        data=append(data,sa);
+        data=append(data,time);
+        data=append(data,"");
+        dataL=concat(dataL,data);
       );
+      dataLL=append(dataLL,dataL);
     );
-    Makedir(Dirdata,"/card");
-    forall(1..(length(out)),nn,
-      tmp1=out_nn;
-      st="00000"+nn;
-      tmp=length(st);
-      st=substring(st,tmp-2,tmp);
-      file=Date+"totalst"+st+".txt";
-      setdirectory(Dirdata+"/card");
-      fid=openfile(file);
-        forall(tmp1,println(fid,#));
-      closefile(fid);
-    );
-    dispL=append(dispL,["Cards gemerated",clrb]);
-    allflg=0;
-    mkcardflg=0;
   );
+  Makedir(Dirdata,"/card");
+  forall(1..stall,ns,
+    tmp=chartLL_1_3;
+    if(length(tmp)==3,tmp="0"+tmp);
+    file=stL_ns+tmp+".txt";
+    setdirectory(Dirdata+"/card");
+    fid=openfile(file);
+    dataL=dataLL_ns;
+    forall(1..(length(dataL)),
+      println(fid,dataL_#);
+    );
+    closefile(fid);
+  );
+  dispL=append(dispL,["Cards gemerated",clrb]);
 );
 
 Tabledo():=(
@@ -2407,20 +2425,58 @@ Tabledo():=(
   tmp=["sumqueall","sumqueque","sumtable"];
   Putcol("",1,"l2",tmp,["Color=blue"]);
   if(allflg==1,
-    file=Maketable();
+    Quesdata():
+    Maketable();
     dispL=append(dispL,["Table generated",clrb]);
     tableflg=0;
     allflg=0;
   );
 ); //end Tabledo
 
+Copycombine():=(
+  regional(num,fid,dir,dir2,
+        tmp,tmp1,tmp2);
+  //global Dirdist
+  dir=Dirdata+"/card";
+  fL=Filelist(dir);
+  fL=select(fL,indexof(#,".txt")>0);
+  if(length(fL)==0,
+    dispL=[["No total files",clrr]];
+  ,
+    fL=sort(fL);
+    num=apply(0..9,text(#));
+    forall(fL,tmp1,
+      dir2="";
+      jj=1;
+      while(jj<=length(tmp1),
+        if(contains(num,tmp1_jj),
+          dir2=dir2+tmp1_jj;
+          jj=jj+1;
+        ,
+          jj=length(tmp1)+1;
+        );
+      );
+      Makedir(Dirdist,dir2);
+      tmp2=Readlines(dir,tmp1);
+      setdirectory(Dirdist+"/"+dir2);
+      fid=openfile(tmp1);
+      forall(tmp2,
+        println(fid,#);
+      );
+      closefile(fid);
+    );
+    dispL=append(dispL,
+              ["CombineData copied",clrb]);
+  );
+);
+
 Copycombinedo():=(
   Resetflg(["copycombine","all"]);
   Resetsetting();
-  tmp=indexof(Dirdist,"Dropbox");
-  tmp=tmp+length("Dropbox");
-  tmp=substring(Dirdist,tmp,length(Dirdist));
-  tmp1=[tmp,"  OK","  Modify"];
+//  tmp=indexof(Dirdist,"Dropbox");
+//  tmp=tmp+length("Dropbox");
+//  tmp=substring(Dirdist,tmp,length(Dirdist));//250613[2Lines]
+  tmp1=[Year+Name,"  OK","  Modify"];
   mouse().xy=[-1,0];
   mp=mouse().xy;
   res=Selectfile(tmp1,[1]);
@@ -2433,16 +2489,10 @@ Copycombinedo():=(
     );
   );
   if(allflg==1,
-    sep=pathsep();
-    if(indexof(Dirdist,sep)==0,sep="/");
-    tmp=Indexall(Dirdist,sep);
-    parent=substring(Dirdist,0,tmp_(-1)-1);
-    child=substring(Dirdist,tmp_(-1),length(Dirdist));
-    Makedir(parent,child);
-    Copycombine(parent,child);
-    copycombineflg=0;
+    Copycombine(); //250705to
+//    copycombineflg=0;
   );
-); //Copycombinedo end
+);
 
 Mxansdo():=(
   Resetflg(["mxans","make","all"]);
